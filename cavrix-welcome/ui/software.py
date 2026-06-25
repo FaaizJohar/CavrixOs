@@ -1,5 +1,5 @@
 import subprocess
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QScrollArea, QGridLayout, QFrame
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QScrollArea, QGridLayout, QFrame, QHBoxLayout
 from PyQt6.QtCore import Qt
 
 class SoftwareWidget(QWidget):

@@ -14,7 +14,7 @@ jobs:
 
     - name: Build Packages, Repo, and ISO in Arch Container
       run: |
-        docker run --privileged -v ${{ github.workspace }}:/workspace -w /workspace archlinux:base-devel bash -c "pacman-key --init && pacman --noconfirm -Sy archlinux-keyring && pacman --noconfirm -S archiso git make && make all"
+        docker run --privileged -v ${{ github.workspace }}:/workspace -w /workspace archlinux:base-devel bash -c "pacman-key --init && pacman --noconfirm -Sy archlinux-keyring && pacman --noconfirm -S archiso git make sudo && sed -i 's/EUID == 0/EUID == 9999/' /usr/bin/makepkg && make all"
 
     - name: Upload ISO Artifact
       uses: actions/upload-artifact@v4
