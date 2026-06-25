@@ -80,7 +80,7 @@ packages: check-deps ## Build all custom packages
 	@for pkg_dir in $(PKG_DIR)/*/; do \
 		pkg_name=$$(basename "$$pkg_dir"); \
 		echo "$(YELLOW)  ▸ Building $$pkg_name...$(RESET)"; \
-		cd "$$pkg_dir" && makepkg -sf --noconfirm && \
+		cd "$$pkg_dir" && makepkg -sfi --noconfirm && \
 		cp -f *.pkg.tar.* "$(REPO_DIR)/" && \
 		echo "$(GREEN)  ✓ $$pkg_name built$(RESET)" || \
 		{ echo "$(RED)  ✗ $$pkg_name failed$(RESET)"; exit 1; }; \
