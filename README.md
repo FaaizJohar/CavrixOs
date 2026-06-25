@@ -12,11 +12,15 @@
 
 <br>
 
-## ⚡ Overview
+## Cavrix AI - The World's First AI-Powered Operating System
 
-**Cavrix AI** is a state-of-the-art, immutable-capable operating system engineered by **Cavrix Core Technologies**. Designed for sovereign computing and zero-latency desktop environments, it leverages a rolling-release foundation while enforcing absolute system stability through aggressive Btrfs snapshotting and strict package curation.
+Welcome to **Cavrix AI**, the first operating system where artificial intelligence is natively baked into the core architecture. Built on a blazing-fast, ultra-optimized Linux base, Cavrix AI delivers a premium, hyper-intelligent desktop experience that outsmarts everything else on the market.
 
-By intercepting and overriding the default display server topologies with proprietary layout algorithms and Qt-native glassmorphism, Cavrix AI delivers an uncompromising, ultra-premium user experience optimized for elite developers and power users.
+## ✨ AI At The Core
+- **Native AI Engine**: Powered by Ollama built directly into `systemd`, running local LLMs securely.
+- **Desktop AI Assistant**: A stunning, glassmorphism transparent AI widget permanently available on your desktop.
+- **Terminal AI Assistant**: Ask your terminal anything with the built-in `cavrix-ask` command (e.g. `cavrix-ask "how do I unzip a file?"`).
+- **Unbelievably Optimized**: Aggressive ZRAM, strict kernel tuning, and UI optimizations designed to run flawlessly in just **2GB of RAM**.
 
 ---
 

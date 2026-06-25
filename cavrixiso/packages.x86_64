@@ -87,3 +87,6 @@ xwaylandvideobridge
 cavrixos-branding
 cavrixos-desktop-config
 cavrixos-mirrorlist
+
+# AI Engine
+ollama

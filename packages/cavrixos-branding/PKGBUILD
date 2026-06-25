@@ -37,4 +37,8 @@ package() {
   # Install SDDM Theme
   install -d "${pkgdir}/usr/share/sddm/themes/cavrixos-glass"
   cp -r "${startdir}/../../assets/sddm/cavrixos-glass/"* "${pkgdir}/usr/share/sddm/themes/cavrixos-glass/"
+
+  # Install AI Terminal Assistant
+  install -d "${pkgdir}/usr/bin"
+  install -m755 "${startdir}/../../assets/cavrix-ask" "${pkgdir}/usr/bin/"
 }

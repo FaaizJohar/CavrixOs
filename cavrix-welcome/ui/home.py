@@ -23,7 +23,7 @@ class HomeWidget(QWidget):
         layout.addWidget(logo)
 
         # Welcome Text with Apple-like Typography
-        title = QLabel("Welcome to CavrixOS")
+        title = QLabel("Welcome to Cavrix AI")
         title.setStyleSheet("""
             color: #ffffff;
             font-size: 38px;
@@ -34,7 +34,7 @@ class HomeWidget(QWidget):
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(title)
 
-        subtitle = QLabel("The premium, highly advanced Linux experience.")
+        subtitle = QLabel("The World's First AI-Powered Operating System.")
         subtitle.setStyleSheet("""
             color: rgba(255, 255, 255, 140);
             font-size: 16px;

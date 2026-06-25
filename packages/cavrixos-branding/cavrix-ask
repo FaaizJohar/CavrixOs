@@ -1,0 +1,21 @@
+#!/bin/bash
+# Cavrix AI Terminal Assistant
+
+if [ -z "$1" ]; then
+    echo -e "\e[36mCavrix AI Assistant\e[0m"
+    echo "Usage: cavrix-ask 'your question here'"
+    exit 1
+fi
+
+echo -e "\e[36mCavrix AI is thinking...\e[0m"
+
+# Query local ollama instance
+RESPONSE=$(curl -s -X POST http://localhost:11434/api/generate -d "{\"model\": \"llama3\", \"prompt\": \"$1\", \"stream\": false}" | jq -r .response 2>/dev/null)
+
+if [ -z "$RESPONSE" ] || [ "$RESPONSE" == "null" ]; then
+    echo -e "\e[31mError: Could not connect to local AI engine. Make sure the 'ollama' service is running and the model is downloaded.\e[0m"
+    echo "Try running: systemctl start ollama"
+else
+    echo -e "\n\e[32mCavrix AI:\e[0m"
+    echo -e "$RESPONSE\n"
+fi

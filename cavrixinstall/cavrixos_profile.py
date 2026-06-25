@@ -47,12 +47,16 @@ class CavrixOSProfile(Profile):
             'nano',
             'vim',
             'htop',
+            'jq',
 
             # CavrixOS specific (from local repo)
             'cavrixos-branding',
             'cavrixos-desktop-config',
             'cavrixos-keyring',
-            'cavrixos-mirrorlist'
+            'cavrixos-mirrorlist',
+            
+            # AI Engine
+            'ollama'
         ]
 
     @property
@@ -63,7 +67,8 @@ class CavrixOSProfile(Profile):
             'bluetooth',
             'sddm',
             'firewalld',
-            'fstrim.timer'
+            'fstrim.timer',
+            'ollama'
         ]
 
     @property
