@@ -1,92 +1,106 @@
 <div align="center">
-  <img src="assets/cavrixos-logo.svg" alt="Cavrix AI Logo" width="200" />
+  <img src="assets/cavrixos-logo.svg" alt="Cavrix AI Logo" width="220" />
   
-  # Cavrix AI
-  **The Next-Generation, Mac-Inspired Linux Distribution**
+  # CAVRIX AI
+  **The Sovereign, AI-Native Operating Environment**
 
   [![Build Status](https://img.shields.io/github/actions/workflow/status/FaaizJohar/CavrixOS/build-iso.yml?branch=main&style=for-the-badge&logo=github)](https://github.com/FaaizJohar/CavrixOS/actions)
   [![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=for-the-badge)](LICENSE)
   [![Architecture](https://img.shields.io/badge/Architecture-x86__64-orange?style=for-the-badge)]()
-  [![Desktop](https://img.shields.io/badge/Desktop-Plasma_6_Custom-purple?style=for-the-badge)]()
+  [![Desktop](https://img.shields.io/badge/Topology-Wayland%20%7C%20Plasma_6-purple?style=for-the-badge)]()
 </div>
 
----
+<br>
 
 ## ⚡ Overview
 
-**Cavrix AI** is an advanced, uncompromising desktop operating system engineered by **Cavrix Core Technologies**. Built on a rolling-release foundation, it bridges the gap between high-performance Linux architecture and premium, Apple-grade aesthetics. 
+**Cavrix AI** is a state-of-the-art, immutable-capable operating system engineered by **Cavrix Core Technologies**. Designed for sovereign computing and zero-latency desktop environments, it leverages a rolling-release foundation while enforcing absolute system stability through aggressive Btrfs snapshotting and strict package curation.
 
-By aggressively customizing KDE Plasma 6 through programmatic Javascript layout overrides, native PyQT6 glassmorphism, and a custom repository architecture, Cavrix AI delivers an out-of-the-box experience that is minimal, visually stunning, and radically efficient.
-
-## 🚀 Core Architecture & Features
-
-### 1. UI/UX Paradigm
-- **Mac-Inspired Topology**: The standard taskbar is programmatically annihilated on first boot, replaced by a 30px **Global Menu Top Bar** and a dynamically scaling, floating **Bottom Dock**.
-- **Glassmorphic Ecosystem**: The `cavrix-welcome` and custom daemon applications are built entirely frameless, utilizing native Qt translucency and deep 14px border radii to emulate macOS Sonoma.
-- **Unified GTK/Qt Theming**: Native integration of `appmenu-gtk-module` and `breeze-gtk` ensures GTK applications export their menus to the Plasma Top Bar flawlessly.
-
-### 2. Under The Hood
-- **Immutable Bootloader**: Built entirely around **systemd-boot** for UEFI systems (with GRUB fallback for legacy), ensuring instantaneous micro-second boot times.
-- **Btrfs Subvolumes**: Aggressive `btrfs` snapshot topology is pre-configured during installation for instantaneous system rollbacks.
-- **Cavrix AI Assistant**: Integrated daemon for desktop-level machine learning assistance.
-- **Zero Bloat**: Pre-configured with Firewalld, Pipewire, Wayland, and Flathub. Nothing more, nothing less.
+By intercepting and overriding the default display server topologies with proprietary layout algorithms and Qt-native glassmorphism, Cavrix AI delivers an uncompromising, ultra-premium user experience optimized for elite developers and power users.
 
 ---
 
-## 🛠️ Build Pipeline
+## 🚀 Core Architecture
 
-Cavrix AI relies on a heavily orchestrated CI/CD pipeline using standard ISO generation toolchains (`cavrixiso`) and a modified guided installer (`cavrixinstall`).
+The system is constructed across four highly isolated computing tiers:
 
-### Local Development Prerequisites
-To build the ISO locally, you require a standard Linux environment equipped with core development headers:
+| Tier | Component | Specification | Description |
+| :--- | :--- | :--- | :--- |
+| **0. Boot** | `systemd-boot` | UEFI / UKI | Micro-second initialization topology bypassing legacy GRUB overhead. |
+| **1. Kernel** | `linux-zen` | Scheduler | Heavily tuned for desktop responsiveness and low-latency throughput. |
+| **2. Display** | `Wayland` + `Plasma 6`| Compositor | Hardware-accelerated window management overriding standard layouts. |
+| **3. Logic** | `Cavrix Assistant` | ML Daemon | Integrated artificial intelligence subsystem operating at the desktop layer. |
+
+### ❯ Proprietary Enhancements
+* **Dynamic Global Topography**: The window manager topology is programmatically rewritten on initialization. Standard taskbars are destroyed and replaced by a 30px Global Menu header and a dynamically scaling, floating dock mechanism.
+* **Translucent Qt Rendering**: Core applications (such as the `cavrix-welcome` suite) are executed utilizing `WA_TranslucentBackground` flags, bypassing standard window manager frames in favor of hardware-blurred, deeply rounded (14px radius) glass elements.
+* **Immutable Rollbacks**: Configured natively with rapid-deployment Btrfs subvolumes, allowing instantaneous temporal system restoration.
+
+---
+
+## 🛠️ Build Pipeline & CI/CD
+
+Cavrix AI utilizes a deeply integrated continuous integration (CI) pipeline to synthesize its ISO artifacts. The repository relies on `cavrixiso` for environment generation and `cavrixinstall` for the customized deployment wizard.
+
+### Prerequisites (Local Synthesis)
+To compile the environment locally, a standard Linux toolchain is strictly required:
 ```bash
 sudo pacman -S --needed base-devel git squashfs-tools qemu-full qemu-desktop
 ```
 
-### Compiling the ISO
-We utilize a monolithic Makefile to orchestrate the build process. Execute the build as root:
-```bash
-sudo make all
-```
-The resulting artifact `CavrixOS-<date>-x86_64.iso` will be synthesized into the `build/` directory.
+### Orchestration Commands
+We employ a monolithic `Makefile` to govern the build orchestration. Execution requires elevated privileges:
 
-### Testing the Build
-To rapidly test the ISO in an ephemeral QEMU virtual machine without burning to physical media:
 ```bash
+# Synthesize the complete x86_64 ISO artifact
+sudo make all
+
+# Validate syntax across Python and Bash subsystems
+make lint
+
+# Launch ephemeral QEMU test environment
 make test
+
+# Purge compilation artifacts
+sudo make clean
 ```
+*Generated artifacts are deposited securely within the `build/` directory.*
 
 ---
 
-## 📁 Repository Architecture
+## 📁 Repository Structure
 
 ```text
 CavrixOS/
-├── cavrixiso/           # Cavrix AI live-environment overlay (airootfs)
-├── cavrixinstall/       # Custom Python installer profile
-├── branding/            # SVG vector assets, Plymouth themes, SDDM configs
-├── packages/            # Proprietary PKGBUILDs (cavrix-welcome, cavrix-ai)
-├── repositories/        # Local pacman repository generation logic
-├── scripts/             # Orchestration scripts for CI/CD ISO building
-└── Makefile             # Monolithic build system
+├── cavrixiso/           # Core live-environment filesystem overlay (airootfs)
+├── cavrixinstall/       # Proprietary Python deployment profile algorithms
+├── branding/            # SVG vector assets, Plymouth splashes, SDDM login definitions
+├── packages/            # Cavrix AI specific PKGBUILD compilation scripts
+├── repositories/        # Local package mirror generation logic
+├── scripts/             # Subsystem orchestration for CI/CD ISO building
+├── .github/             # Enterprise governance, Issue Templates, and linting pipelines
+└── Makefile             # Monolithic artifact build system
 ```
 
 ---
 
-## 💻 The Custom Installer
+## 💻 Animated Deployment Terminal
 
-The standard CLI installer has been completely rewritten. Invoking `cavrixos-installer` in the live environment triggers a highly advanced bash script utilizing ANSI escape codes to render an animated, color-shifting ASCII representation of the **Cavrix AI** logo before seamlessly handing off the process to the Python installation backend.
+The deployment logic has been decoupled from standard Linux installers. When invoking the installer in the live environment, the `cavrixos-installer` daemon hijacks the standard output. Utilizing ANSI escape sequences and `tput` buffering, it renders a high-fidelity, color-shifting ASCII loading sequence for the **Cavrix AI** subsystem before handing off execution to the asynchronous Python installation backend.
 
 ---
 
-## 🤝 Contributing & Documentation
+## 🤝 Enterprise Governance & Contribution
 
-We demand high-quality, strictly formatted code. If you wish to contribute to the Cavrix AI ecosystem:
-1. Review the [Architecture Documentation](docs/architecture.md) to understand our upstream-first philosophy.
-2. Read the [Building Guide](docs/building.md) for local compilation specifics.
-3. Ensure all Python applications include `__init__.py` and pass `python -m py_compile`.
-4. Submit pull requests against the `main` branch.
+This repository adheres to strict enterprise-grade development standards. If you are contributing code to Cavrix AI, you must abide by the following protocols:
+
+1. **Architecture Integrity**: Review [Architecture Documentation](docs/architecture.md) prior to submitting logic changes.
+2. **Automated Linting**: All pull requests must pass the `.github/workflows/lint.yml` CI pipeline (`flake8` / `shellcheck`).
+3. **Security Policy**: Vulnerabilities must be reported in accordance with [SECURITY.md](SECURITY.md).
+4. **Code of Conduct**: All contributors are bound by the [Contributor Covenant](CODE_OF_CONDUCT.md).
+
+<br>
 
 <div align="center">
-  <i>Engineered for the future of the Linux Desktop.</i>
+  <i>Engineered by Cavrix Core Technologies. The apex of sovereign computing.</i>
 </div>
