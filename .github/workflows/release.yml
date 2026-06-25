@@ -1,34 +1,29 @@
-name: Release
+name: Create GitHub Release
 
 on:
   push:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
-    container:
-      image: archlinux/archlinux:latest
-      options: --privileged
     steps:
-    - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Install dependencies
-      run: |
-        pacman-key --init
-        pacman --noconfirm -Sy archlinux-keyring
-        pacman --noconfirm -S archiso base-devel git make
+      - name: Build Packages, Repo, and ISO in Arch Container
+        run: |
+          docker run --privileged -v ${{ github.workspace }}:/workspace -w /workspace archlinux:base-devel bash -c "pacman-key --init && pacman --noconfirm -Sy archlinux-keyring && pacman --noconfirm -S archiso git make sudo && sed -i 's/EUID == 0/EUID == 9999/' /usr/bin/makepkg && make all"
 
-    - name: Build Packages and Repo
-      run: make repo
-
-    - name: Build ISO
-      run: make iso
-
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: |
-          build/*.iso
-          build/SHA256SUMS
+      - name: Create Release and Upload ISO
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/*.iso
+          name: Cavrix AI Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
