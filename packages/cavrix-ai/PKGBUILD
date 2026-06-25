@@ -5,7 +5,7 @@ pkgdesc="CavrixOS Integrated AI Desktop Assistant"
 arch=('any')
 url="https://cavrixos.org"
 license=('GPL3')
-depends=('python' 'python-pyqt6')
+depends=('python' 'python-pyqt6' 'python-requests')
 source=()
 sha256sums=()
 

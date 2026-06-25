@@ -3,6 +3,7 @@ from archinstall.default_profiles.profile import Profile, ProfileType, GreeterTy
 from archinstall.lib.installer import Installer
 from archinstall.lib.log import info
 
+
 class CavrixOSProfile(Profile):
     def __init__(self) -> None:
         super().__init__(
@@ -21,19 +22,19 @@ class CavrixOSProfile(Profile):
             'wayland',
             'xorg-xwayland',
             'sddm',
-            
+
             # Audio
             'pipewire',
             'pipewire-pulse',
             'pipewire-alsa',
             'wireplumber',
-            
+
             # Network & Bluetooth
             'networkmanager',
             'bluez',
             'bluez-utils',
             'firewalld',
-            
+
             # Utilities & FS
             'btrfs-progs',
             'timeshift',
@@ -46,7 +47,7 @@ class CavrixOSProfile(Profile):
             'nano',
             'vim',
             'htop',
-            
+
             # CavrixOS specific (from local repo)
             'cavrixos-branding',
             'cavrixos-desktop-config',

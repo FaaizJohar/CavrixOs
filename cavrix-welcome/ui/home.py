@@ -2,13 +2,14 @@ from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QHBoxLayout, QPushButt
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap
 
+
 class HomeWidget(QWidget):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout(self)
         layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.setSpacing(24)
-        
+
         # Transparent background so the main.py glassmorphism shows through
         self.setStyleSheet("background-color: transparent;")
 
@@ -24,9 +25,9 @@ class HomeWidget(QWidget):
         # Welcome Text with Apple-like Typography
         title = QLabel("Welcome to CavrixOS")
         title.setStyleSheet("""
-            color: #ffffff; 
-            font-size: 38px; 
-            font-family: 'Space Grotesk', sans-serif; 
+            color: #ffffff;
+            font-size: 38px;
+            font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
             letter-spacing: -1px;
         """)
@@ -35,8 +36,8 @@ class HomeWidget(QWidget):
 
         subtitle = QLabel("The premium, highly advanced Linux experience.")
         subtitle.setStyleSheet("""
-            color: rgba(255, 255, 255, 140); 
-            font-size: 16px; 
+            color: rgba(255, 255, 255, 140);
+            font-size: 16px;
             font-family: 'Inter', sans-serif;
             font-weight: 400;
         """)

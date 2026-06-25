@@ -31,6 +31,7 @@ try:
 except ImportError:
     print("Warning: cavrixos_profile.py not found in /root. Falling back to standard profiles.")
 
+
 def load_default_config():
     config_path = Path('/root/cavrixos-config.json')
     if config_path.exists():
@@ -38,15 +39,14 @@ def load_default_config():
             return json.load(f)
     return {}
 
+
 def main():
     info("Starting CavrixOS Installer...")
-    
+
     # Initialize config handler with our custom defaults
-    default_args = load_default_config()
-    
     # We will pass the arguments to the archinstall config handler
     sys.argv.extend(['--config', '/root/cavrixos-config.json'])
-    
+
     arch_config_handler = ArchConfigHandler()
     mirror_list_handler = MirrorListHandler(
         offline=arch_config_handler.args.offline,
@@ -77,7 +77,7 @@ def main():
         from archinstall.lib.disk.filesystem import FilesystemHandler
         from archinstall.lib.menu.util import delayed_warning
         from archinstall.lib.translationhandler import tr
-        
+
         fs_handler = FilesystemHandler(arch_config_handler.config.disk_config)
         if not delayed_warning(tr('Starting device modifications in ')):
             return
@@ -89,6 +89,7 @@ def main():
         AuthenticationHandler(),
         ApplicationHandler(),
     )
+
 
 if __name__ == '__main__':
     main()
