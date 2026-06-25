@@ -32,10 +32,6 @@ firewall-offline-cmd --set-default-zone=public
 echo "==> Setting up Flatpak Remotes"
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-echo "==> Setting SDDM Theme"
-cat <<EOF > /etc/sddm.conf.d/cavrixos.conf
-[Theme]
-Current=cavrixos-sddm
-EOF
+
 
 echo "==> Setup complete!"

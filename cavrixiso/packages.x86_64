@@ -84,6 +84,6 @@ plasma-browser-integration
 xwaylandvideobridge
 
 # CavrixOS Custom Packages (will be added from local repo)
-# cavrixos-branding
-# cavrixos-desktop-config
-# cavrixos-mirrorlist
+cavrixos-branding
+cavrixos-desktop-config
+cavrixos-mirrorlist
