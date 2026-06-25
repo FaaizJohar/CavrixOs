@@ -99,6 +99,14 @@ This repository adheres to strict enterprise-grade development standards. If you
 3. **Security Policy**: Vulnerabilities must be reported in accordance with [SECURITY.md](SECURITY.md).
 4. **Code of Conduct**: All contributors are bound by the [Contributor Covenant](CODE_OF_CONDUCT.md).
 
+---
+
+## 🌐 Contact & Corporate
+
+For business inquiries, enterprise licensing, or direct engineering support, please reach out via our official channels:
+* **Website**: [cavrixcore.com](https://cavrixcore.com)
+* **Email**: [hello@cavrixcore.com](mailto:hello@cavrixcore.com)
+
 <br>
 
 <div align="center">
