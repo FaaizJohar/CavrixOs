@@ -1,21 +1,81 @@
-#!/bin/bash
-# Cavrix AI Terminal Assistant
+#!/usr/bin/env python3
+import sys
+import os
+import platform
+import json
+import urllib.request
+import urllib.error
 
-if [ -z "$1" ]; then
-    echo -e "\e[36mCavrix AI Assistant\e[0m"
-    echo "Usage: cavrix-ask 'your question here'"
-    exit 1
-fi
+# ANSI Escape codes for styling
+CYAN = '\033[36m'
+GREEN = '\033[32m'
+RED = '\033[31m'
+RESET = '\033[0m'
+BOLD = '\033[1m'
 
-echo -e "\e[36mCavrix AI is thinking...\e[0m"
+OLLAMA_API = "http://localhost:11434/api/generate"
+DEFAULT_MODEL = "llama3"
 
-# Query local ollama instance
-RESPONSE=$(curl -s -X POST http://localhost:11434/api/generate -d "{\"model\": \"llama3\", \"prompt\": \"$1\", \"stream\": false}" | jq -r .response 2>/dev/null)
+def get_system_context():
+    """Gathers basic system context to inject into the prompt."""
+    try:
+        os_info = platform.system() + " " + platform.release()
+        cwd = os.getcwd()
+        user = os.getlogin()
+        return f"System Context: OS={os_info}, User={user}, CWD={cwd}"
+    except Exception:
+        return "System Context: Unknown"
 
-if [ -z "$RESPONSE" ] || [ "$RESPONSE" == "null" ]; then
-    echo -e "\e[31mError: Could not connect to local AI engine. Make sure the 'ollama' service is running and the model is downloaded.\e[0m"
-    echo "Try running: systemctl start ollama"
-else
-    echo -e "\n\e[32mCavrix AI:\e[0m"
-    echo -e "$RESPONSE\n"
-fi
+def main():
+    if len(sys.argv) < 2:
+        print(f"{CYAN}{BOLD}Cavrix AI Assistant{RESET}")
+        print("Usage: cavrix-ask 'your question here'")
+        sys.exit(1)
+
+    user_prompt = " ".join(sys.argv[1:])
+    sys_context = get_system_context()
+    
+    # Construct the meta-prompt
+    full_prompt = (
+        f"You are Cavrix AI, a helpful terminal assistant running on a CavrixOS system.\n"
+        f"The user is asking a question from the command line. Use the following system context to help them if relevant.\n"
+        f"{sys_context}\n\n"
+        f"User question: {user_prompt}"
+    )
+
+    print(f"{CYAN}Cavrix AI is thinking...{RESET}\n")
+
+    payload = {
+        "model": DEFAULT_MODEL,
+        "prompt": full_prompt,
+        "stream": True
+    }
+    
+    req = urllib.request.Request(
+        OLLAMA_API, 
+        data=json.dumps(payload).encode('utf-8'),
+        headers={'Content-Type': 'application/json'}
+    )
+    
+    print(f"{GREEN}{BOLD}Cavrix AI:{RESET}")
+    
+    try:
+        with urllib.request.urlopen(req) as response:
+            for line in response:
+                if line:
+                    data = json.loads(line.decode('utf-8'))
+                    if "response" in data:
+                        print(data["response"], end="", flush=True)
+            print() # Print final newline
+    except urllib.error.URLError as e:
+        print(f"\n{RED}Error: Could not connect to local AI engine.{RESET}")
+        print(f"Reason: {e.reason}")
+        print("Make sure the 'ollama' service is running (systemctl start ollama)")
+        print("and the model is downloaded (ollama run llama3).")
+        sys.exit(1)
+    except Exception as e:
+        print(f"\n{RED}An unexpected error occurred: {e}{RESET}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

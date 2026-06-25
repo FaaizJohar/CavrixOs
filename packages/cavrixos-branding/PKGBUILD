@@ -5,7 +5,7 @@ pkgdesc="CavrixOS branding and assets"
 arch=('any')
 url="https://cavrixos.org"
 license=('GPL3')
-depends=()
+depends=('python')
 source=()
 sha256sums=()
 
