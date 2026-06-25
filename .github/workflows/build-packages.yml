@@ -28,4 +28,4 @@ jobs:
         chown -R builduser:builduser .
 
     - name: Build Packages
-      run: su - builduser -c "make packages"
+      run: su builduser -c "make packages"

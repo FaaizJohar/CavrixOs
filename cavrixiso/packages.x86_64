@@ -74,7 +74,7 @@ wayland
 # Desktop Environment & Theming
 papirus-icon-theme
 kvantum
-ttf-inter
+inter-font
 ttf-jetbrains-mono
 ttf-cascadia-code
 python-pyqt6
@@ -87,6 +87,9 @@ xwaylandvideobridge
 cavrixos-branding
 cavrixos-desktop-config
 cavrixos-mirrorlist
+cavrixos-keyring
+cavrix-welcome
+cavrix-ai
 
 # AI Engine
 ollama
