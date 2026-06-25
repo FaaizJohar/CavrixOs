@@ -14,17 +14,7 @@ jobs:
 
     - name: Build Packages, Repo, and ISO in Arch Container
       run: |
-        docker run --privileged -v ${{ github.workspace }}:/workspace -w /workspace archlinux:base-devel bash -c "pacman-key --init && pacman --noconfirm -Sy archlinux-keyring && pacman --noconfirm -S archiso git make sudo && useradd -m builduser && echo 'builduser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && chown -R builduser:builduser /workspace && su builduser -c 'make packages repo' && make iso" > build.log 2>&1 || (cat build.log && exit 1)
-
-    - name: Commit build log
-      if: failure()
-      run: |
-        git config --global user.email "bot@cavrixos.org"
-        git config --global user.name "Bot"
-        git switch -c build-logs
-        git add build.log
-        git commit -m "build failed"
-        git push -f https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git build-logs
+        docker run --privileged -v ${{ github.workspace }}:/workspace -w /workspace archlinux:base-devel bash -c "pacman-key --init && pacman --noconfirm -Sy archlinux-keyring && pacman --noconfirm -S archiso git make sudo && useradd -m builduser && echo 'builduser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && chown -R builduser:builduser /workspace && su builduser -c 'make packages repo' && make iso" > build.log 2>&1 || (echo 'BUILD FAILED. LAST 500 LINES OF LOG:' && tail -n 500 build.log && exit 1)
 
 
     - name: Upload ISO Artifact
