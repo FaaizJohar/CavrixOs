@@ -1,23 +1,66 @@
 #!/bin/bash
-# CavrixOS Installer Launcher
-# Wraps the custom archinstall script
+# Cavrix AI Installer Launcher
+# Wraps the custom archinstall script with an animated ASCII logo
 
 # Check if running as root
 if [ "$EUID" -ne 0 ]; then
-  echo "Please run as root (sudo cavrixos-installer)"
+  echo -e "\033[1;31mPlease run as root (sudo cavrixos-installer)\033[0m"
   exit 1
 fi
 
-echo -e "\033[1;36mStarting CavrixOS Installer...\033[0m"
+clear
+tput civis # Hide cursor
 
-# Ensure the custom profile is in Python's path by dropping it where archinstall expects it, 
-# or by passing the script explicitly.
-# Since we are putting our script in /root/, we just run it directly.
+# Colors for animation
+C1="\033[38;2;6;182;212m"   # Cyan
+C2="\033[38;2;37;99;235m"   # Blue
+C3="\033[38;2;147;197;253m" # Light Blue
+RESET="\033[0m"
 
+# The ASCII Logo Array
+read -r -d '' LOGO << 'EOF'
+  ____    _    __     __ ____  ___ __  __     _    ___ 
+ / ___|  / \   \ \   / /|  _ \|_ _| \/ \ \   / \  |_ _|
+| |     / _ \   \ \ / / | |_) || | \  / \ \ / _ \  | | 
+| |___ / ___ \   \ V /  |  _ < | | /  \  \ V ___ \ | | 
+ \____/_/   \_\   \_/   |_| \_\___/_/\_\  \_/   \_|___|
+                                                       
+EOF
+
+# Animation: Typewriter Fade-in
+echo ""
+echo ""
+while IFS= read -r line; do
+    for (( i=0; i<${#line}; i++ )); do
+        char="${line:$i:1}"
+        if [[ "$char" != " " ]]; then
+            # Randomize color between cyan and blue
+            num=$(( RANDOM % 3 ))
+            if [ $num -eq 0 ]; then echo -en "${C1}${char}${RESET}"; fi
+            if [ $num -eq 1 ]; then echo -en "${C2}${char}${RESET}"; fi
+            if [ $num -eq 2 ]; then echo -en "${C3}${char}${RESET}"; fi
+            sleep 0.002
+        else
+            echo -en " "
+        fi
+    done
+    echo ""
+done <<< "$LOGO"
+
+echo -e "\n${C1} > Initiating Core Setup...${RESET}"
+sleep 0.5
+echo -e "${C2} > Loading Cavrix AI Configuration...${RESET}"
+sleep 0.5
+echo -e "${C3} > Launching Installer...${RESET}"
+sleep 1
+
+tput cnorm # Show cursor
+
+# Ensure the custom profile is in Python's path
 if [ -f "/root/cavrixos-install.py" ]; then
     python /root/cavrixos-install.py
 else
-    echo "Error: cavrixos-install.py not found in /root/"
+    echo -e "\n\033[1;31mError: cavrixos-install.py not found in /root/\033[0m"
     echo "Falling back to standard archinstall..."
     archinstall
 fi

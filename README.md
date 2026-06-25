@@ -1,4 +1,4 @@
-# CavrixOS
+# Cavrix AI
 **A premium, modern Linux distribution.**
 Built by **Cavrix Core Technologies**.
 
@@ -6,12 +6,12 @@ Built by **Cavrix Core Technologies**.
 
 ## Overview
 
-CavrixOS is a clean distribution built using standard core tools:
+Cavrix AI is a clean distribution built using standard core tools:
 - **archiso** for ISO creation
 - **archinstall** for the guided installer
 - Standard Arch packaging (`makepkg` / `PKGBUILD`)
 
-CavrixOS layers premium branding, curated defaults, and custom applications on top of a rock-solid core base.
+Cavrix AI layers premium branding, curated defaults, and custom applications on top of a rock-solid core base.
 
 ## Features
 
@@ -23,12 +23,12 @@ CavrixOS layers premium branding, curated defaults, and custom applications on t
 - **Firewall** enabled by default (firewalld)
 - **Flatpak** with Flathub pre-configured
 - **NVIDIA / AMD / Intel** driver installer
-- **CavrixOS Welcome** — onboarding application
-- **CavrixOS Settings** — system configuration GUI
-- **CavrixOS AI** — desktop AI assistant
+- **Cavrix AI Welcome** — onboarding application
+- **Cavrix AI Settings** — system configuration GUI
+- **Cavrix AI Assistant** — desktop AI assistant
 - **Custom branding** — GRUB theme, Plymouth splash, SDDM login, icon pack, cursor, wallpapers
 
-## Building
+## Building Cavrix AI
 
 ### Prerequisites
 

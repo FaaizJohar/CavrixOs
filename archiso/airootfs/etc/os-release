@@ -1,7 +1,7 @@
-NAME="CavrixOS"
-PRETTY_NAME="CavrixOS"
-ID=cavrixos
-ID_LIKE=arch
+NAME="Cavrix AI"
+PRETTY_NAME="Cavrix AI"
+ID=cavrix-ai
+ID_LIKE=cavrix
 BUILD_ID=rolling
 ANSI_COLOR="38;2;100;149;237"
 HOME_URL="https://cavrixos.org/"
