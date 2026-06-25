@@ -20,7 +20,7 @@ jobs:
       run: |
         pacman-key --init
         pacman --noconfirm -Sy archlinux-keyring
-        pacman --noconfirm -S base-devel git make sudo
+        pacman --noconfirm -S base-devel git make sudo archiso squashfs-tools
         
         # Create a non-root user for makepkg
         useradd -m builduser

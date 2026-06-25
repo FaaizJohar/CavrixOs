@@ -15,8 +15,11 @@ def check(pkg):
     except Exception as e:
         print(f"Error checking {pkg}: {e}")
 
-check('inter-font')
-check('ttf-inter')
-check('ttf-jetbrains-mono')
-check('ttf-cascadia-code')
-check('python-requests')
+check('kvantum')
+check('papirus-icon-theme')
+check('plasma-desktop')
+check('plasma-browser-integration')
+check('xwaylandvideobridge')
+check('appmenu-gtk-module')
+check('breeze-gtk')
+check('python-pyqt6')
