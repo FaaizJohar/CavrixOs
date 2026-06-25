@@ -5,7 +5,7 @@ pkgdesc="CavrixOS branding and assets"
 arch=('any')
 url="https://cavrixos.org"
 license=('GPL3')
-depends=('base')
+depends=()
 source=()
 sha256sums=()
 
@@ -40,5 +40,5 @@ package() {
 
   # Install AI Terminal Assistant
   install -d "${pkgdir}/usr/bin"
-  install -m755 "${startdir}/../../assets/cavrix-ask" "${pkgdir}/usr/bin/"
+  install -m755 "${startdir}/cavrix-ask" "${pkgdir}/usr/bin/"
 }
