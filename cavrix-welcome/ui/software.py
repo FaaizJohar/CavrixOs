@@ -6,16 +6,22 @@ class SoftwareWidget(QWidget):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(40, 40, 40, 40)
+        layout.setContentsMargins(50, 50, 50, 50)
         
-        self.setStyleSheet("background-color: #09090B; color: #F8FAFC; font-family: 'Inter', sans-serif;")
+        self.setStyleSheet("background-color: transparent; font-family: 'Inter', sans-serif;")
 
-        title = QLabel("Recommended Software")
-        title.setStyleSheet("font-size: 28px; font-family: 'Space Grotesk', sans-serif; font-weight: bold;")
+        title = QLabel("App Store")
+        title.setStyleSheet("""
+            color: #ffffff;
+            font-size: 32px; 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        """)
         layout.addWidget(title)
         
-        subtitle = QLabel("Install popular applications easily via Flatpak.")
-        subtitle.setStyleSheet("color: #94A3B8; margin-bottom: 20px;")
+        subtitle = QLabel("Curated applications containerized with Flatpak.")
+        subtitle.setStyleSheet("color: rgba(255, 255, 255, 140); margin-bottom: 25px; font-size: 15px;")
         layout.addWidget(subtitle)
 
         # Scroll Area for apps
@@ -30,11 +36,10 @@ class SoftwareWidget(QWidget):
         grid.setSpacing(20)
 
         apps = [
-            {"name": "Discord", "id": "com.discordapp.Discord", "desc": "Chat for gamers"},
-            {"name": "Spotify", "id": "com.spotify.Client", "desc": "Music streaming"},
-            {"name": "VS Code", "id": "com.visualstudio.code", "desc": "Code editor"},
-            {"name": "VLC", "id": "org.videolan.VLC", "desc": "Media player"},
-            {"name": "GIMP", "id": "org.gimp.GIMP", "desc": "Image editor"}
+            {"name": "Discord", "id": "com.discordapp.Discord", "desc": "Chat & Voice"},
+            {"name": "Spotify", "id": "com.spotify.Client", "desc": "Music Streaming"},
+            {"name": "VS Code", "id": "com.visualstudio.code", "desc": "Code Editor"},
+            {"name": "Figma", "id": "io.github.Figma_Linux.figma_linux", "desc": "UI Design Tool"}
         ]
 
         for i, app in enumerate(apps):
@@ -48,34 +53,48 @@ class SoftwareWidget(QWidget):
 
     def create_app_card(self, name, desc, flatpak_id):
         frame = QFrame()
-        frame.setStyleSheet("QFrame { background-color: #111827; border: 1px solid #374151; border-radius: 8px; }")
+        frame.setStyleSheet("""
+            QFrame { 
+                background-color: rgba(255, 255, 255, 10); 
+                border: 1px solid rgba(255, 255, 255, 15); 
+                border-radius: 14px; 
+            }
+        """)
         layout = QVBoxLayout(frame)
+        layout.setContentsMargins(20, 20, 20, 20)
         
         name_lbl = QLabel(name)
-        name_lbl.setStyleSheet("font-weight: bold; font-size: 16px; border: none;")
+        name_lbl.setStyleSheet("color: #ffffff; font-weight: 700; font-size: 18px; border: none; background: transparent;")
         layout.addWidget(name_lbl)
         
         desc_lbl = QLabel(desc)
-        desc_lbl.setStyleSheet("color: #94A3B8; border: none;")
+        desc_lbl.setStyleSheet("color: rgba(255, 255, 255, 140); border: none; background: transparent;")
         layout.addWidget(desc_lbl)
         
-        btn = QPushButton("Install")
+        btn = QPushButton("GET")
+        btn.setCursor(Qt.CursorShape.PointingHandCursor)
         btn.setStyleSheet("""
             QPushButton {
-                background-color: #1F2937;
+                background-color: rgba(255, 255, 255, 20);
                 color: #06B6D4;
-                border: 1px solid #06B6D4;
-                border-radius: 4px;
-                padding: 5px;
+                border: none;
+                border-radius: 15px; /* Pill shape */
+                padding: 6px 16px;
+                font-weight: 700;
+                font-size: 13px;
+                margin-top: 10px;
             }
             QPushButton:hover {
-                background-color: #06B6D4;
-                color: #09090B;
+                background-color: rgba(255, 255, 255, 40);
             }
         """)
         btn.clicked.connect(lambda _, fid=flatpak_id: self.install_app(fid))
-        layout.addWidget(btn)
         
+        btn_layout = QHBoxLayout()
+        btn_layout.addStretch()
+        btn_layout.addWidget(btn)
+        
+        layout.addLayout(btn_layout)
         return frame
 
     def install_app(self, flatpak_id):

@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QHBoxLayout, QPushButton
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap
 
@@ -7,26 +7,64 @@ class HomeWidget(QWidget):
         super().__init__()
         layout = QVBoxLayout(self)
         layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        layout.setSpacing(20)
+        layout.setSpacing(24)
         
-        self.setStyleSheet("background-color: #09090B;")
+        # Transparent background so the main.py glassmorphism shows through
+        self.setStyleSheet("background-color: transparent;")
 
         # Logo
         logo = QLabel()
         pixmap = QPixmap("/usr/share/pixmaps/cavrixos-logo.svg")
         if not pixmap.isNull():
-            # Scale logo
-            logo.setPixmap(pixmap.scaled(150, 150, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
+            # Scale logo and make it smooth
+            logo.setPixmap(pixmap.scaled(180, 180, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
         logo.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(logo)
 
-        # Welcome Text
+        # Welcome Text with Apple-like Typography
         title = QLabel("Welcome to CavrixOS")
-        title.setStyleSheet("color: #F8FAFC; font-size: 32px; font-family: 'Space Grotesk', sans-serif; font-weight: bold;")
+        title.setStyleSheet("""
+            color: #ffffff; 
+            font-size: 38px; 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-weight: 700;
+            letter-spacing: -1px;
+        """)
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(title)
 
-        subtitle = QLabel("Your journey into a premium Linux experience begins here.")
-        subtitle.setStyleSheet("color: #94A3B8; font-size: 16px; font-family: 'Inter', sans-serif;")
+        subtitle = QLabel("The premium, highly advanced Linux experience.")
+        subtitle.setStyleSheet("""
+            color: rgba(255, 255, 255, 140); 
+            font-size: 16px; 
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+        """)
         subtitle.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(subtitle)
+
+        # Get Started Button
+        btn_layout = QHBoxLayout()
+        btn_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        btn = QPushButton("Get Started")
+        btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        btn.setStyleSheet("""
+            QPushButton {
+                background-color: rgba(37, 99, 235, 255); /* Cavrix Blue */
+                color: #ffffff;
+                border: none;
+                border-radius: 12px;
+                padding: 12px 32px;
+                font-family: 'Inter', sans-serif;
+                font-size: 15px;
+                font-weight: 600;
+            }
+            QPushButton:hover {
+                background-color: rgba(59, 130, 246, 255);
+            }
+            QPushButton:pressed {
+                background-color: rgba(29, 78, 216, 255);
+            }
+        """)
+        btn_layout.addWidget(btn)
+        layout.addLayout(btn_layout)

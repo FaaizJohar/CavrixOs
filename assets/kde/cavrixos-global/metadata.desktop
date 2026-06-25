@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=CavrixOS
+Comment=CavrixOS Premium Mac-like Layout
+Type=Service
+X-KDE-ServiceTypes=Plasma/LookAndFeel
+X-KDE-ParentApp=
+X-KDE-PluginInfo-Name=cavrixos-global
+X-KDE-PluginInfo-Author=Cavrix Core Technologies
+X-KDE-PluginInfo-Version=1.0
+X-KDE-PluginInfo-License=GPL

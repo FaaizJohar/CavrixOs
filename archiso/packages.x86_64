@@ -78,6 +78,10 @@ ttf-inter
 ttf-jetbrains-mono
 ttf-cascadia-code
 python-pyqt6
+appmenu-gtk-module
+breeze-gtk
+plasma-browser-integration
+xwaylandvideobridge
 
 # CavrixOS Custom Packages (will be added from local repo)
 # cavrixos-branding

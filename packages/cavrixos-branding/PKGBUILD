@@ -14,6 +14,14 @@ package() {
   install -d "${pkgdir}/usr/share/backgrounds/cavrixos"
   install -m644 "${startdir}/../../assets/wallpapers/"* "${pkgdir}/usr/share/backgrounds/cavrixos/"
   
+  # KDE Look and Feel (Mac Layout)
+  install -d "${pkgdir}/usr/share/plasma/look-and-feel/cavrixos-global"
+  cp -r "${startdir}/../../assets/kde/cavrixos-global/"* "${pkgdir}/usr/share/plasma/look-and-feel/cavrixos-global/"
+
+  # KDE Color Scheme
+  install -d "${pkgdir}/usr/share/color-schemes"
+  install -m644 "${startdir}/../../assets/kde/CavrixDark.colors" "${pkgdir}/usr/share/color-schemes/"
+  
   # Install Logos
   install -d "${pkgdir}/usr/share/pixmaps"
   install -m644 "${startdir}/../../assets/"*.svg "${pkgdir}/usr/share/pixmaps/"
