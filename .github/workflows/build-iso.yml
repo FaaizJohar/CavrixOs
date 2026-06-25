@@ -1,0 +1,34 @@
+name: Build ISO
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux/archlinux:latest
+      options: --privileged
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        pacman-key --init
+        pacman --noconfirm -Sy archlinux-keyring
+        pacman --noconfirm -S archiso base-devel git make
+
+    - name: Build Packages and Repo
+      run: make repo
+
+    - name: Build ISO
+      run: make iso
+
+    - name: Upload ISO Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: CavrixOS-Live-ISO
+        path: build/*.iso

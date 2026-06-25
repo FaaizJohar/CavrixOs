@@ -1,0 +1,17 @@
+[Colors]
+BackgroundNormal=9,9,11
+BackgroundAlternate=17,24,39
+DecorationFocus=6,182,212
+DecorationHover=37,99,235
+ForegroundNormal=248,250,252
+ForegroundActive=255,255,255
+ForegroundInactive=148,163,184
+ForegroundLink=37,99,235
+ForegroundNegative=239,68,68
+ForegroundNeutral=245,158,11
+ForegroundPositive=16,185,129
+ForegroundVisited=29,78,216
+
+[General]
+ColorScheme=CavrixDark
+Name=Cavrix Dark

@@ -1,0 +1,31 @@
+name: Build Packages
+
+on:
+  push:
+    paths:
+      - 'packages/**'
+  pull_request:
+    paths:
+      - 'packages/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux/archlinux:latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        pacman-key --init
+        pacman --noconfirm -Sy archlinux-keyring
+        pacman --noconfirm -S base-devel git make sudo
+        
+        # Create a non-root user for makepkg
+        useradd -m builduser
+        echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+        chown -R builduser:builduser .
+
+    - name: Build Packages
+      run: su - builduser -c "make packages"

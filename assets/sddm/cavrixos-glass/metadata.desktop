@@ -1,0 +1,12 @@
+[SddmGreeterTheme]
+Name=Cavrix Glass
+Description=Premium glassmorphism SDDM login theme for CavrixOS
+Author=Cavrix Core Technologies
+Copyright=(c) 2026
+License=GPL
+Type=sddm-theme
+Version=1.0
+Website=https://cavrixos.org
+Screenshot=preview.png
+MainScript=Main.qml
+ConfigFile=theme.conf

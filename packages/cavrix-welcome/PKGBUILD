@@ -1,0 +1,27 @@
+pkgname=cavrix-welcome
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="CavrixOS Welcome and First Boot Configuration App"
+arch=('any')
+url="https://cavrixos.org"
+license=('GPL3')
+depends=('python' 'python-pyqt6' 'pacman')
+source=()
+sha256sums=()
+
+package() {
+  # Install the python app to /opt/cavrix-welcome
+  install -d "${pkgdir}/opt/cavrix-welcome"
+  cp -r "${startdir}/../../cavrix-welcome/"* "${pkgdir}/opt/cavrix-welcome/"
+  
+  # Ensure the main script is executable
+  chmod +x "${pkgdir}/opt/cavrix-welcome/main.py"
+  
+  # Install Desktop Entry for standard menus
+  install -d "${pkgdir}/usr/share/applications"
+  install -m644 "${startdir}/../../cavrix-welcome/cavrix-welcome.desktop" "${pkgdir}/usr/share/applications/"
+  
+  # Autostart on login
+  install -d "${pkgdir}/etc/xdg/autostart"
+  install -m644 "${startdir}/../../cavrix-welcome/cavrix-welcome.desktop" "${pkgdir}/etc/xdg/autostart/"
+}

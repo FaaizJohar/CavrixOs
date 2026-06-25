@@ -1,0 +1,12 @@
+NAME="CavrixOS"
+PRETTY_NAME="CavrixOS"
+ID=cavrixos
+ID_LIKE=arch
+BUILD_ID=rolling
+ANSI_COLOR="38;2;100;149;237"
+HOME_URL="https://cavrixos.org/"
+DOCUMENTATION_URL="https://docs.cavrixos.org/"
+SUPPORT_URL="https://cavrixos.org/support"
+BUG_REPORT_URL="https://github.com/cavrixos/cavrixos/issues"
+PRIVACY_POLICY_URL="https://cavrixos.org/privacy"
+LOGO=cavrixos-logo

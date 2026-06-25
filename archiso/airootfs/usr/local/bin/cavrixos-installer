@@ -1,0 +1,23 @@
+#!/bin/bash
+# CavrixOS Installer Launcher
+# Wraps the custom archinstall script
+
+# Check if running as root
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run as root (sudo cavrixos-installer)"
+  exit 1
+fi
+
+echo -e "\033[1;36mStarting CavrixOS Installer...\033[0m"
+
+# Ensure the custom profile is in Python's path by dropping it where archinstall expects it, 
+# or by passing the script explicitly.
+# Since we are putting our script in /root/, we just run it directly.
+
+if [ -f "/root/cavrixos-install.py" ]; then
+    python /root/cavrixos-install.py
+else
+    echo "Error: cavrixos-install.py not found in /root/"
+    echo "Falling back to standard archinstall..."
+    archinstall
+fi

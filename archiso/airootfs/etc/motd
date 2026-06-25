@@ -1,0 +1,11 @@
+
+ [1;36m████████████████████████████████████████████████████████████████████████████████[0m
+
+ [1;37mWelcome to CavrixOS![0m
+
+ [1;36m*[0m A graphical installer should start automatically if you boot with graphical support.
+ [1;36m*[0m To manually launch the installer, run: [1;33mcavrixos-installer[0m
+ [1;36m*[0m For the standard archinstall wizard, run: [1;33marchinstall[0m
+
+ [1;36m████████████████████████████████████████████████████████████████████████████████[0m
+

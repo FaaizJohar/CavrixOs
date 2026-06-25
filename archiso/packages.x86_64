@@ -1,0 +1,85 @@
+# Base System
+base
+linux-zen
+linux-zen-headers
+linux-firmware
+mkinitcpio
+amd-ucode
+intel-ucode
+
+# Archinstall (Live env installer)
+archinstall
+arch-install-scripts
+
+# Filesystems
+btrfs-progs
+dosfstools
+e2fsprogs
+exfatprogs
+f2fs-tools
+ntfs-3g
+xfsprogs
+mtools
+
+# Networking
+networkmanager
+iwd
+wpa_supplicant
+dhclient
+bind
+openssh
+
+# Audio (PipeWire)
+pipewire
+pipewire-pulse
+pipewire-alsa
+wireplumber
+
+# Hardware & Drivers
+mesa
+vulkan-radeon
+vulkan-intel
+nvidia-open-dkms
+nvidia-utils
+bluez
+bluez-utils
+
+# Utilities
+git
+vim
+nano
+htop
+wget
+curl
+rsync
+bash-completion
+zsh
+zsh-completions
+terminus-font
+sudo
+pacman-contrib
+reflector
+zram-generator
+
+# Desktop Environment (Live ISO)
+plasma-meta
+sddm
+konsole
+dolphin
+firefox
+xorg-server
+xorg-xwayland
+wayland
+
+# Desktop Environment & Theming
+papirus-icon-theme
+kvantum
+ttf-inter
+ttf-jetbrains-mono
+ttf-cascadia-code
+python-pyqt6
+
+# CavrixOS Custom Packages (will be added from local repo)
+# cavrixos-branding
+# cavrixos-desktop-config
+# cavrixos-mirrorlist

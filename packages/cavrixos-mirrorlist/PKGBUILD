@@ -1,0 +1,16 @@
+pkgname=cavrixos-mirrorlist
+pkgver=20240101
+pkgrel=1
+pkgdesc="CavrixOS mirror list for pacman"
+arch=('any')
+url="https://cavrixos.org"
+license=('GPL3')
+depends=('pacman')
+source=()
+sha256sums=()
+
+package() {
+  install -d "${pkgdir}/etc/pacman.d"
+  
+  echo "Server = https://repo.cavrixos.org/\$repo/os/\$arch" > "${pkgdir}/etc/pacman.d/cavrixos-mirrorlist"
+}

@@ -1,0 +1,40 @@
+# CavrixOS Plymouth Script
+# A minimal animation featuring a glowing pulse effect for the logo
+
+# Set background to pitch black
+Window.SetBackgroundTopColor(0.035, 0.035, 0.043); # #09090B
+Window.SetBackgroundBottomColor(0.035, 0.035, 0.043);
+
+# Load the SVG Logo
+logo_image = Image("logo.svg");
+
+# Get Screen Dimensions
+screen_width = Window.GetWidth();
+screen_height = Window.GetHeight();
+
+# Center the Logo
+logo_sprite = Sprite();
+logo_sprite.SetImage(logo_image);
+logo_sprite.SetX(screen_width / 2 - logo_image.GetWidth() / 2);
+logo_sprite.SetY(screen_height / 2 - logo_image.GetHeight() / 2);
+
+# Pulse Animation logic
+progress = 0;
+
+fun refresh_callback () {
+    progress++;
+    
+    # Simple sine wave for opacity pulsing (0.5 to 1.0)
+    # Math.Sin isn't fully available in all plymouth script environments directly without math plugin
+    # So we use a simple linear ping-pong
+    cycle = progress % 100;
+    if (cycle < 50) {
+        opacity = 0.5 + (cycle / 100.0);
+    } else {
+        opacity = 1.0 - ((cycle - 50) / 100.0);
+    }
+    
+    logo_sprite.SetOpacity(opacity);
+}
+
+Plymouth.SetRefreshFunction (refresh_callback);

@@ -1,0 +1,84 @@
+{
+  "archinstall-language": "English",
+  "audio_config": {
+    "audio": "pipewire"
+  },
+  "bootloader_config": {
+    "bootloader": "Systemd-boot",
+    "uki": true,
+    "removable": false
+  },
+  "debug": false,
+  "disk_config": {
+    "config_type": "default_layout",
+    "device_modifications": [
+      {
+        "device": "/dev/sda",
+        "partitions": [
+          {
+            "btrfs": [],
+            "flags": ["boot"],
+            "fs_type": "fat32",
+            "size": {"sector_size": null, "unit": "MiB", "value": 1024},
+            "mount_options": [],
+            "mountpoint": "/boot",
+            "status": "create",
+            "type": "primary"
+          },
+          {
+            "btrfs": [
+              {"name": "@", "mountpoint": "/"},
+              {"name": "@home", "mountpoint": "/home"},
+              {"name": "@var", "mountpoint": "/var"},
+              {"name": "@snapshots", "mountpoint": "/.snapshots"}
+            ],
+            "flags": [],
+            "fs_type": "btrfs",
+            "size": {"sector_size": null, "unit": "Percent", "value": 100},
+            "mount_options": ["compress=zstd", "noatime"],
+            "mountpoint": "/",
+            "status": "create",
+            "type": "primary"
+          }
+        ],
+        "wipe": true
+      }
+    ]
+  },
+  "hostname": "cavrixos",
+  "kernels": ["linux-zen"],
+  "locale_config": {
+    "kb_layout": "us",
+    "sys_enc": "UTF-8",
+    "sys_lang": "en_US"
+  },
+  "mirror_config": {
+    "custom_servers": [],
+    "mirror_regions": {},
+    "optional_repositories": []
+  },
+  "network_config": {
+    "type": "nm"
+  },
+  "ntp": true,
+  "offline": false,
+  "packages": [],
+  "pacman_config": {
+    "color": true,
+    "parallel_downloads": 5
+  },
+  "profile_config": {
+    "gfx_driver": "All open-source (default)",
+    "greeter": "sddm",
+    "profile": {
+      "details": ["CavrixOS Desktop"],
+      "main": "Desktop"
+    }
+  },
+  "script": "cavrixos-install",
+  "silent": false,
+  "swap": {
+    "enabled": false
+  },
+  "timezone": "UTC"
+}

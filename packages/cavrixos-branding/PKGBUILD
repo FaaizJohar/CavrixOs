@@ -1,0 +1,32 @@
+pkgname=cavrixos-branding
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="CavrixOS branding and assets"
+arch=('any')
+url="https://cavrixos.org"
+license=('GPL3')
+depends=('base')
+source=()
+sha256sums=()
+
+package() {
+  # Install Wallpapers
+  install -d "${pkgdir}/usr/share/backgrounds/cavrixos"
+  install -m644 "${startdir}/../../assets/wallpapers/"* "${pkgdir}/usr/share/backgrounds/cavrixos/"
+  
+  # Install Logos
+  install -d "${pkgdir}/usr/share/pixmaps"
+  install -m644 "${startdir}/../../assets/"*.svg "${pkgdir}/usr/share/pixmaps/"
+  
+  # Install Plymouth Theme
+  install -d "${pkgdir}/usr/share/plymouth/themes/cavrixos-boot"
+  cp -r "${startdir}/../../assets/plymouth/cavrixos-boot/"* "${pkgdir}/usr/share/plymouth/themes/cavrixos-boot/"
+  
+  # Install GRUB Theme
+  install -d "${pkgdir}/usr/share/grub/themes/cavrixos-grub-theme"
+  cp -r "${startdir}/../../assets/grub/cavrixos-grub-theme/"* "${pkgdir}/usr/share/grub/themes/cavrixos-grub-theme/"
+  
+  # Install SDDM Theme
+  install -d "${pkgdir}/usr/share/sddm/themes/cavrixos-glass"
+  cp -r "${startdir}/../../assets/sddm/cavrixos-glass/"* "${pkgdir}/usr/share/sddm/themes/cavrixos-glass/"
+}

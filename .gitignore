@@ -1,0 +1,45 @@
+# === Build Artifacts ===
+build/
+!build/.gitkeep
+*.iso
+*.iso.sha256
+*.iso.sig
+*.tar.gz
+*.tar.zst
+*.pkg.tar.*
+
+# === Archiso Work Directory ===
+work/
+out/
+
+# === Package Build ===
+packages/*/src/
+packages/*/pkg/
+packages/*/*.pkg.tar.*
+
+# === Repository ===
+repositories/*.db
+repositories/*.db.tar.*
+repositories/*.files
+repositories/*.files.tar.*
+repositories/pkgs/
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+*.egg
+
+# === Editor & IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# === Logs ===
+*.log

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Install CavrixOS
+Comment=Launch the CavrixOS Installer
+Exec=konsole -e sudo cavrixos-installer
+Icon=system-software-install
+Terminal=false
+Categories=System;
+StartupNotify=true

@@ -1,0 +1,26 @@
+pkgname=cavrixos-desktop-config
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Default CavrixOS desktop configurations"
+arch=('any')
+url="https://cavrixos.org"
+license=('GPL3')
+depends=('plasma-desktop' 'cavrixos-branding' 'papirus-icon-theme' 'ttf-inter' 'ttf-jetbrains-mono' 'ttf-cascadia-code' 'kvantum' 'cavrix-welcome' 'cavrix-ai')
+source=()
+sha256sums=()
+
+package() {
+  # Install KDE Color Scheme
+  install -d "${pkgdir}/usr/share/color-schemes"
+  install -m644 "${startdir}/../../assets/kde/CavrixDark.colors" "${pkgdir}/usr/share/color-schemes/"
+  
+  # Install Kvantum Theme
+  install -d "${pkgdir}/usr/share/Kvantum/CavrixOS"
+  install -m644 "${startdir}/../../assets/kvantum/CavrixOS/"* "${pkgdir}/usr/share/Kvantum/CavrixOS/"
+  
+  # Set default SDDM theme
+  install -d "${pkgdir}/etc/sddm.conf.d"
+  echo "[Theme]" > "${pkgdir}/etc/sddm.conf.d/cavrixos.conf"
+  echo "Current=cavrixos-glass" >> "${pkgdir}/etc/sddm.conf.d/cavrixos.conf"
+  echo "CursorTheme=Bibata-Modern-Ice" >> "${pkgdir}/etc/sddm.conf.d/cavrixos.conf"
+}

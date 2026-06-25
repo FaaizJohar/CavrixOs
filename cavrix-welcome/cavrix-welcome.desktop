@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=CavrixOS Welcome
+Comment=Welcome to CavrixOS
+Exec=python /opt/cavrix-welcome/main.py
+Icon=cavrixos-logo
+Terminal=false
+Type=Application
+Categories=System;Settings;
+StartupNotify=true
+# X-GNOME-Autostart-enabled=true
+# X-KDE-autostart-after=panel

@@ -1,0 +1,19 @@
+pkgname=cavrixos-keyring
+pkgver=20240101
+pkgrel=1
+pkgdesc="CavrixOS PGP keyring"
+arch=('any')
+url="https://cavrixos.org"
+license=('GPL3')
+depends=('pacman')
+source=()
+sha256sums=()
+
+package() {
+  install -d "${pkgdir}/usr/share/pacman/keyrings"
+  
+  # Mock keyring files
+  touch "${pkgdir}/usr/share/pacman/keyrings/cavrixos.gpg"
+  touch "${pkgdir}/usr/share/pacman/keyrings/cavrixos-trusted"
+  touch "${pkgdir}/usr/share/pacman/keyrings/cavrixos-revoked"
+}

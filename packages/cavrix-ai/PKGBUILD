@@ -1,0 +1,19 @@
+pkgname=cavrix-ai
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="CavrixOS Integrated AI Desktop Assistant"
+arch=('any')
+url="https://cavrixos.org"
+license=('GPL3')
+depends=('python' 'python-pyqt6')
+source=()
+sha256sums=()
+
+package() {
+  # Install the python app to /opt/cavrix-ai
+  install -d "${pkgdir}/opt/cavrix-ai"
+  cp -r "${startdir}/../../cavrix-ai/"* "${pkgdir}/opt/cavrix-ai/"
+  
+  # Ensure the daemon script is executable
+  chmod +x "${pkgdir}/opt/cavrix-ai/daemon.py"
+}
