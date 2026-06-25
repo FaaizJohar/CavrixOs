@@ -6,6 +6,9 @@ linux-firmware
 mkinitcpio
 amd-ucode
 intel-ucode
+grub
+syslinux
+efibootmgr
 
 # Archinstall (Live env installer)
 archinstall
