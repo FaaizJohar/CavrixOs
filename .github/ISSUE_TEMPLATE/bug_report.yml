@@ -1,0 +1,53 @@
+name: Bug Report
+description: File a bug report to help us improve Cavrix AI
+title: "[BUG] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: input
+    id: version
+    attributes:
+      label: Cavrix AI Version
+      description: What version of the ISO did you use? (e.g., 2026.06.25)
+    validations:
+      required: true
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      description: Where did this happen?
+      options:
+        - Live USB (Bare Metal)
+        - Installed System (Bare Metal)
+        - QEMU / KVM
+        - VirtualBox / VMware
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Exactly how can we reproduce this?
+      value: |
+        1. Boot up...
+        2. Click on...
+        3. Run command...
+        4. See error...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Logs
+      description: Paste any relevant terminal output or systemd journal logs.
+      render: shell

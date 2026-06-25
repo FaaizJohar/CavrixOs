@@ -9,6 +9,31 @@ CavrixOS is a derivative built on the following principles:
 
 ## Components
 
+```mermaid
+graph TD
+    A[Hardware] --> B[UEFI Firmware]
+    B --> C[systemd-boot]
+    C --> D[Linux-Zen Kernel]
+    D --> E[systemd init]
+    E --> F[Wayland Display Server]
+    F --> G[KDE Plasma 6]
+    
+    %% Custom UI Overrides
+    G --> H[Javascript Plasma Layout overrides]
+    H --> I[Mac Top Bar & Global Menus]
+    H --> J[Floating Bottom Dock]
+    
+    %% Core Apps
+    G --> K[Cavrix AI Assistant Daemon]
+    G --> L[Cavrix Welcome App]
+    
+    classDef core fill:#2563EB,stroke:#1E40AF,stroke-width:2px,color:#fff;
+    classDef ui fill:#93C5FD,stroke:#3B82F6,stroke-width:2px,color:#000;
+    
+    class C,D,E core;
+    class G,I,J,K,L ui;
+```
+
 - **Base**: `linux-zen`, `systemd`, `btrfs`
 - **Boot**: `systemd-boot` (UEFI) / `GRUB` (Legacy), `Plymouth`
 - **Display**: `Wayland`, `KDE Plasma 6`, `SDDM`
