@@ -14,9 +14,12 @@ with urllib.request.urlopen(req) as response:
         if job['conclusion'] == 'failure':
             log_url = f"https://api.github.com/repos/FaaizJohar/CavrixOS/actions/jobs/{job['id']}/logs"
             print(f"  Log URL: {log_url}")
+            req = urllib.request.Request(log_url)
+            token = os.environ.get("GITHUB_TOKEN")
+            if token:
+                req.add_header("Authorization", f"Bearer {token}")
             try:
-                req_log = urllib.request.Request(log_url)
-                with urllib.request.urlopen(req_log) as log_res:
+                with urllib.request.urlopen(req) as log_res:
                     log_content = log_res.read().decode('utf-8', errors='ignore')
                     lines = log_content.splitlines()[-200:]
                     print("  --- LAST 200 LINES OF LOG ---")
