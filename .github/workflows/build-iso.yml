@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: write
+  issues: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,16 +18,9 @@ jobs:
 
     - name: Build Packages, Repo, and ISO in Arch Container
       run: |
-        docker run --privileged -v ${{ github.workspace }}:/workspace -w /workspace archlinux:base-devel bash -c "pacman-key --init && pacman --noconfirm -Sy archlinux-keyring && pacman --noconfirm -S archiso git make sudo && useradd -m builduser && echo 'builduser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && chown -R builduser:builduser /workspace && su builduser -c 'make packages repo' && make iso" > build.log 2>&1 || (
-          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git /tmp/repo
-          cd /tmp/repo
-          git config --global user.email "bot@cavrixos.org"
-          git config --global user.name "Bot"
-          git checkout -b build-logs
-          cp /workspace/build.log .
-          git add build.log
-          git commit -m "build failed"
-          git push -f origin build-logs
+        docker run --privileged -v ${{ github.workspace }}:/workspace -w /workspace archlinux:base-devel bash -c "pacman-key --init && pacman --noconfirm -Sy archlinux-keyring && pacman --noconfirm -S archiso git make sudo jq && useradd -m builduser && echo 'builduser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && chown -R builduser:builduser /workspace && su builduser -c 'make packages repo' && make iso" > build.log 2>&1 || (
+          log_content=$(tail -n 150 build.log | jq -Rs .)
+          curl -s -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues -d "{\"title\":\"Build Failed Log\",\"body\":$log_content}"
           exit 1
         )
 
