@@ -9,7 +9,7 @@ SHELL := /bin/bash
 ISO_NAME       := CavrixOS
 ISO_VERSION    := $(shell date +%Y.%m.%d)
 ARCH           := x86_64
-PROFILE_DIR    := $(CURDIR)/archiso
+PROFILE_DIR    := $(CURDIR)/cavrixiso
 WORK_DIR       := /tmp/cavrixos-build
 OUT_DIR        := $(CURDIR)/build
 REPO_DIR       := $(CURDIR)/repositories/pkgs
@@ -130,9 +130,9 @@ lint: ## Lint shell scripts and Python files
 	@echo "$(YELLOW)  ▸ Shell scripts$(RESET)"
 	@shellcheck scripts/*.sh 2>/dev/null && echo "$(GREEN)  ✓ Shell OK$(RESET)" || true
 	@echo "$(YELLOW)  ▸ Python files$(RESET)"
-	@python -m py_compile archinstall/cavrixos_profile.py 2>/dev/null && echo "$(GREEN)  ✓ Python OK$(RESET)" || true
-	@echo "$(YELLOW)  ▸ JSON files$(RESET)"
-	@python -m json.tool archinstall/cavrixos_config.json >/dev/null 2>&1 && echo "$(GREEN)  ✓ JSON OK$(RESET)" || true
+	@python -m py_compile cavrixinstall/cavrixos_profile.py 2>/dev/null && echo "$(GREEN)  ✓ Python OK$(RESET)" || true
+	@echo "$(YELLOW)▸ Validating JSON config...$(RESET)"
+	@python -m json.tool cavrixinstall/cavrixos_config.json >/dev/null 2>&1 && echo "$(GREEN)  ✓ JSON OK$(RESET)" || true
 
 # ── Cleanup ───────────────────────────────────────────────────
 clean: ## Remove build artifacts and work directory

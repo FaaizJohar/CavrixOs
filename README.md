@@ -62,8 +62,8 @@ make all    # packages → repo → iso
 
 ```
 CavrixOS/
-├── archiso/          # archiso profile (ISO configuration)
-├── archinstall/      # Custom archinstall profile & config
+├── cavrixiso/        # Cavrix ISO configuration profile
+├── cavrixinstall/    # Custom configuration and profile
 ├── branding/         # Brand assets (logos, colors, fonts)
 ├── packages/         # Custom PKGBUILD packages
 ├── repositories/     # Package repository tools
