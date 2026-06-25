@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-You need an Arch Linux system (or a container/VM running Arch Linux) to build CavrixOS.
+You need a standard Linux system (or a container/VM) to build CavrixOS.
 
 Install the build dependencies:
 

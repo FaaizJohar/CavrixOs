@@ -1,19 +1,17 @@
 # CavrixOS
-
-**A premium, modern Arch-based Linux distribution.**
-
+**A premium, modern Linux distribution.**
 Built by **Cavrix Core Technologies**.
 
 ---
 
 ## Overview
 
-CavrixOS is a clean Arch-based distribution built using official Arch tools:
+CavrixOS is a clean distribution built using standard core tools:
 - **archiso** for ISO creation
 - **archinstall** for the guided installer
 - Standard Arch packaging (`makepkg` / `PKGBUILD`)
 
-CavrixOS does **not** fork Arch Linux. It layers branding, curated defaults, and custom applications on top of a pure Arch base.
+CavrixOS layers premium branding, curated defaults, and custom applications on top of a rock-solid core base.
 
 ## Features
 
@@ -34,7 +32,7 @@ CavrixOS does **not** fork Arch Linux. It layers branding, curated defaults, and
 
 ### Prerequisites
 
-An Arch Linux system (or container) with:
+A Linux system (or container) with standard build tools:
 
 ```bash
 sudo pacman -S archiso base-devel git
@@ -90,7 +88,7 @@ CavrixOS/
 - **Premium** — Apple-grade polish, not "gamer RGB"
 - **Modern** — Wayland-first, PipeWire, systemd-boot, UKI
 - **Dark-first** — Professional dark theme as the default
-- **Arch at the core** — Full AUR access, pacman, rolling release
+- **Rolling Release** — Full package manager access, rolling release
 
 ## License
 
