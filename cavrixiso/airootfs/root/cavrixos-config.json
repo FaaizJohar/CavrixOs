@@ -9,42 +9,6 @@
     "removable": false
   },
   "debug": false,
-  "disk_config": {
-    "config_type": "default_layout",
-    "device_modifications": [
-      {
-        "device": "/dev/sda",
-        "partitions": [
-          {
-            "btrfs": [],
-            "flags": ["boot"],
-            "fs_type": "fat32",
-            "size": {"sector_size": null, "unit": "MiB", "value": 1024},
-            "mount_options": [],
-            "mountpoint": "/boot",
-            "status": "create",
-            "type": "primary"
-          },
-          {
-            "btrfs": [
-              {"name": "@", "mountpoint": "/"},
-              {"name": "@home", "mountpoint": "/home"},
-              {"name": "@var", "mountpoint": "/var"},
-              {"name": "@snapshots", "mountpoint": "/.snapshots"}
-            ],
-            "flags": [],
-            "fs_type": "btrfs",
-            "size": {"sector_size": null, "unit": "Percent", "value": 100},
-            "mount_options": ["compress=zstd", "noatime"],
-            "mountpoint": "/",
-            "status": "create",
-            "type": "primary"
-          }
-        ],
-        "wipe": true
-      }
-    ]
-  },
   "hostname": "cavrixos",
   "kernels": ["linux-zen"],
   "locale_config": {
