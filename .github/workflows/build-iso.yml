@@ -18,17 +18,16 @@ jobs:
 
     - name: Build Packages, Repo, and ISO in Arch Container
       run: |
-        docker run --privileged -v ${{ github.workspace }}:/workspace -w /workspace archlinux:base-devel bash -c "pacman-key --init && pacman --noconfirm -Sy archlinux-keyring && pacman --noconfirm -S archiso git make sudo && useradd -m builduser && echo 'builduser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && chown -R builduser:builduser /workspace && su builduser -c 'make packages repo' && make iso" > build.log 2>&1 || (
-          cp build.log CI_ERROR.log
-          git config user.email "bot@cavrixos.org"
-          git config user.name "Bot"
-          git checkout main
-          git pull origin main
-          git add CI_ERROR.log
-          git commit -m "chore: upload CI_ERROR.log"
-          git push origin main
-          exit 1
-        )
+        docker run --privileged -v ${{ github.workspace }}:/workspace -w /workspace archlinux:base-devel bash -c "pacman-key --init && pacman --noconfirm -Sy archlinux-keyring && pacman --noconfirm -S archiso git make sudo && useradd -m builduser && echo 'builduser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && chown -R builduser:builduser /workspace && su builduser -c 'make packages repo' && make iso" > build.log 2>&1
+
+    - name: Create Issue on Failure
+      if: failure()
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh issue create --title "Build ISO Failed (Run $GITHUB_RUN_ID)" --body "\`\`\`text
+        $(tail -n 1000 build.log)
+        \`\`\`"
 
 
     - name: Upload ISO Artifact
