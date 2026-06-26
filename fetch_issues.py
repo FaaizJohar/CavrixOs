@@ -1,12 +1,13 @@
 import urllib.request
 import json
 
-url = "https://api.github.com/repos/FaaizJohar/CavrixOS/issues?state=all"
-req = urllib.request.Request(url, headers={'Accept': 'application/vnd.github.v3+json'})
-with urllib.request.urlopen(req) as response:
-    data = json.loads(response.read().decode())
-    print(f"Issues found: {len(data)}")
-    for d in data:
-        print(f"Issue #{d['number']}: {d['title']}")
-        print(d.get('body', ''))
-        print('-'*40)
+try:
+    url = 'https://api.github.com/repos/FaaizJohar/CavrixOS/issues'
+    response = urllib.request.urlopen(url).read()
+    issues = json.loads(response)
+    for i in issues[:2]:
+        with open('issue_body.txt', 'w', encoding='utf-8') as f:
+            f.write(i['body'] or 'None')
+        break
+except Exception as e:
+    print(e)
