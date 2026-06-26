@@ -4,7 +4,7 @@
   # CavrixOS
   **An Arch Linux derivative featuring integrated local AI and customized KDE Plasma**
 
-  [![Build Status](https://img.shields.io/github/actions/workflow/status/FaaizJohar/CavrixOS/build-iso.yml?branch=main&style=for-the-badge&logo=github)](https://github.com/FaaizJohar/CavrixOS/actions)
+  [![Build Status](https://img.shields.io/github/actions/workflow/status/FaaizJohar/CavrixOS/release.yml?branch=main&style=for-the-badge&logo=github)](https://github.com/FaaizJohar/CavrixOS/actions)
   [![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=for-the-badge)](LICENSE)
   [![Architecture](https://img.shields.io/badge/Architecture-x86__64-orange?style=for-the-badge)]()
   [![Desktop](https://img.shields.io/badge/Desktop-Wayland%20%7C%20Plasma_6-purple?style=for-the-badge)]()
@@ -99,7 +99,7 @@ Please review the following documentation before submitting pull requests:
 1. [Architecture Documentation](docs/architecture.md)
 2. [Contributing Guidelines](docs/contributing.md)
 
-All pull requests must pass the automated `.github/workflows/lint.yml` CI pipeline (`flake8` for Python, `shellcheck` for Bash).
+All pull requests must pass the automated `.github/workflows/release.yml` CI pipeline (`flake8` for Python, `shellcheck` for Bash).
 
 ---
 
