@@ -32,14 +32,16 @@ jobs:
             archlinux:base-devel \
             bash -c "
               pacman-key --init && \
-              pacman --noconfirm -Sy archlinux-keyring && \
-              pacman --noconfirm -S archiso git make sudo grub syslinux mtools dosfstools edk2-ovmf jq && \
+              pacman --noconfirm -Sy archlinux-keyring reflector && \
+              reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist && \
+              pacman --noconfirm -S archiso git make sudo grub syslinux mtools dosfstools edk2-ovmf jq python-pytest && \
+              sed -i 's/^#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/' /etc/makepkg.conf && \
+              sed -i 's/COMPRESSZST=(zstd -c -z -q -)/COMPRESSZST=(zstd -c -z -q -T0 -)/' /etc/makepkg.conf && \
               useradd -m builduser && \
               echo 'builduser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
               chown -R builduser:builduser /workspace && \
               chmod +x /workspace/ci/scripts/mock-gpg.sh && \
               /workspace/ci/scripts/mock-gpg.sh && \
-              pacman --noconfirm -S python-pytest && \
               cd /workspace && \
               pytest testing/tests/ && \
               su builduser -c 'make all' && \
