@@ -17,7 +17,16 @@ jobs:
 
       - name: Build Packages, Repo, and ISO in Arch Container
         run: |
-          docker run --privileged -v ${{ github.workspace }}:/workspace -w /workspace archlinux:base-devel bash -c "pacman-key --init && pacman --noconfirm -Sy archlinux-keyring && pacman --noconfirm -S archiso git make sudo && useradd -m builduser && echo 'builduser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && chown -R builduser:builduser /workspace && su builduser -c 'make packages repo' && make iso"
+          docker run --privileged -v ${{ github.workspace }}:/workspace -w /workspace archlinux:base-devel bash -c "pacman-key --init && pacman --noconfirm -Sy archlinux-keyring && pacman --noconfirm -S archiso git make sudo grub syslinux mtools dosfstools edk2-ovmf && useradd -m builduser && echo 'builduser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && chown -R builduser:builduser /workspace && su builduser -c 'make packages repo' && make iso" > build.log 2>&1
+
+      - name: Create Issue on Failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create --title "Release Build Failed (Run $GITHUB_RUN_ID)" --body "\`\`\`text
+          $(tail -n 1000 build.log)
+          \`\`\`"
 
       - name: Create Release and Upload ISO
         uses: softprops/action-gh-release@v2
