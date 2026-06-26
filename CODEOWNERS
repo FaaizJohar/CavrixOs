@@ -1,0 +1,21 @@
+# CODEOWNERS
+# Automatically applied by GitHub PRs
+
+# Core Distribution
+/distribution/      @FaaizJohar @cavrix-core-team
+/installer/         @FaaizJohar @cavrix-installer-team
+
+# Packages
+/packages/          @cavrix-packaging-team
+
+# AI Subsystem
+/ai/                @cavrix-ai-team
+
+# First-Party Apps
+/apps/              @cavrix-desktop-team
+
+# CI/CD & Testing
+/ci/                @cavrix-release-eng
+/testing/           @cavrix-qa-team
+/Makefile           @cavrix-release-eng
+/.github/workflows/ @cavrix-release-eng

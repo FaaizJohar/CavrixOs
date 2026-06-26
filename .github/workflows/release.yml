@@ -39,6 +39,9 @@ jobs:
               chown -R builduser:builduser /workspace && \
               chmod +x /workspace/ci/scripts/mock-gpg.sh && \
               /workspace/ci/scripts/mock-gpg.sh && \
+              pacman --noconfirm -S python-pytest && \
+              cd /workspace && \
+              pytest testing/tests/ && \
               su builduser -c 'make all' && \
               make iso
             " > build.log 2>&1

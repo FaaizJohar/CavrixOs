@@ -1,29 +1,34 @@
 #!/usr/bin/env python3
-import time
+import sys
+import os
 import logging
 from core.service import CavrixAIManager
+from api import start_dbus_loop
 
-logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("CavrixAI.Main")
 
 def main():
-    logger.info("Initializing Cavrix AI Daemon (Phase 3 Architecture)...")
+    logger.info("Initializing Cavrix AI Daemon (Production Subsystem)...")
     
+    # Ensure dependencies are met
+    try:
+        import dbus
+        import gi
+    except ImportError:
+        logger.error("Required libraries missing. Ensure 'dbus-python' and 'python-gobject' are installed.")
+        sys.exit(1)
+
     manager = CavrixAIManager()
     
     if manager.start_daemon():
         logger.info("Daemon active. Preloading models based on VRAM heuristics...")
         manager.preload_model()
         
-        # Placeholder for REST API / D-Bus event loop
-        logger.info("Entering D-Bus wait state... (Mocked)")
-        try:
-            while True:
-                time.sleep(3600)
-        except KeyboardInterrupt:
-            logger.info("Daemon shutting down.")
+        logger.info("Transferring control to D-Bus GLib Event Loop...")
+        start_dbus_loop(manager)
     else:
-        logger.error("Failed to initialize AI Subsystem.")
+        logger.error("Failed to initialize AI Subsystem. Ollama failed to start within memory constraints.")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
