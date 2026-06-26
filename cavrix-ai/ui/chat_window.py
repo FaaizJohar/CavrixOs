@@ -1,7 +1,6 @@
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QTextEdit, QLineEdit, QMainWindow
 from PyQt6.QtCore import Qt, QThread, pyqtSignal
 import requests
-import json
 
 
 class AIChatWindow(QMainWindow):
@@ -52,12 +51,12 @@ class AIChatWindow(QMainWindow):
         user_text = self.input_field.text().strip()
         if not user_text:
             return
-
-        self.chat_history.append(f"<br><b>You</b>: {user_text}")
+        # User message
+        self.chat_history.append(f"<b>You</b>: {user_text}")
         self.input_field.clear()
         self.input_field.setEnabled(False)
         self.input_field.setPlaceholderText("Cavrix AI is thinking...")
-        
+
         # Start background thread to query Ollama API
         self.worker = OllamaWorker(user_text)
         self.worker.response_signal.connect(self.on_ai_response)
@@ -69,13 +68,19 @@ class AIChatWindow(QMainWindow):
         self.reset_input()
 
     def on_ai_error(self, error_msg):
-        self.chat_history.append(f"<br><span style='color:#ef4444;'><b>System</b>: Failed to connect to local AI engine. Make sure Ollama is running. ({error_msg})</span>")
+        error_html = (
+            f"<br><span style='color:#ef4444;'><b>System</b>: "
+            f"Failed to connect to local AI engine. "
+            f"Make sure Ollama is running. ({error_msg})</span>"
+        )
+        self.chat_history.append(error_html)
         self.reset_input()
 
     def reset_input(self):
         self.input_field.setEnabled(True)
         self.input_field.setPlaceholderText("Ask Cavrix AI...")
         self.input_field.setFocus()
+
 
 class OllamaWorker(QThread):
     response_signal = pyqtSignal(str)
@@ -96,7 +101,6 @@ class OllamaWorker(QThread):
             # Add a slight timeout so it doesn't hang forever if Ollama is off
             response = requests.post("http://localhost:11434/api/generate", json=payload, timeout=15)
             response.raise_for_status()
-            
             data = response.json()
             reply = data.get("response", "").strip()
             self.response_signal.emit(reply.replace('\\n', '<br>'))

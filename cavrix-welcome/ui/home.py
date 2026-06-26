@@ -18,7 +18,11 @@ class HomeWidget(QWidget):
         pixmap = QPixmap("/usr/share/pixmaps/cavrixos-logo.svg")
         if not pixmap.isNull():
             # Scale logo and make it smooth
-            logo.setPixmap(pixmap.scaled(180, 180, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
+            logo.setPixmap(pixmap.scaled(
+                180, 180,
+                Qt.AspectRatioMode.KeepAspectRatio,
+                Qt.TransformationMode.SmoothTransformation
+            ))
         logo.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(logo)
 

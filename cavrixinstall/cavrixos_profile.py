@@ -54,7 +54,6 @@ class CavrixOSProfile(Profile):
             'cavrixos-desktop-config',
             'cavrixos-keyring',
             'cavrixos-mirrorlist',
-            
             # AI Engine
             'ollama'
         ]

@@ -2,7 +2,6 @@ import sys
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                              QHBoxLayout, QListWidget, QListWidgetItem, QStackedWidget)
 from PyQt6.QtCore import Qt, QPoint
-import os
 
 from ui.home import HomeWidget
 from ui.setup import SetupWidget

@@ -1,14 +1,11 @@
 #!/usr/bin/env python
-import os
 import sys
 import json
 from pathlib import Path
 
 # Try to import archinstall, otherwise error
 try:
-    import archinstall
     from archinstall.lib.args import ArchConfigHandler
-    from archinstall.lib.installer import Installer
     from archinstall.lib.profile.profiles_handler import profile_handler
     from archinstall.scripts.guided import perform_installation, show_menu
     from archinstall.lib.mirror.mirror_handler import MirrorListHandler
