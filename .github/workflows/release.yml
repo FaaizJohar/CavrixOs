@@ -55,10 +55,11 @@ jobs:
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
+          git checkout -b debug-logs-$GITHUB_RUN_ID
           cp build.log build_debug.log || true
           git add build_debug.log || true
           git commit -m "chore(debug): upload raw build logs [skip ci]" || true
-          git push || true
+          git push origin debug-logs-$GITHUB_RUN_ID || true
 
       - name: Publish Release
         uses: softprops/action-gh-release@v2
