@@ -1,0 +1,30 @@
+#include <tunables/global>
+
+/usr/bin/cavrix-ai-daemon {
+  #include <abstractions/base>
+  #include <abstractions/python>
+  #include <abstractions/dbus-session-strict>
+
+  # Network access for Ollama API
+  network inet tcp,
+  network inet6 tcp,
+
+  # Allow reading GPU states
+  /dev/nvidiactl rw,
+  /dev/nvidia0 rw,
+  /dev/kfd rw,
+  /sys/class/drm/** r,
+  
+  # Allow reading own configuration
+  /etc/cavrixos/ai.conf r,
+  /opt/cavrix-ai/** r,
+
+  # Execution restrictions
+  /usr/bin/ollama px,
+  /usr/bin/rocm-smi ix,
+  /usr/bin/nvidia-smi ix,
+
+  # Deny arbitrary execution
+  deny /bin/** x,
+  deny /usr/bin/** x,
+}
