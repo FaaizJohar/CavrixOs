@@ -33,7 +33,10 @@ class CavrixInstaller:
     def get_base_packages(self) -> list:
         return [
             "base", "linux-zen", "linux-firmware", "btrfs-progs", "nano",
-            "networkmanager", "sudo", "efibootmgr", "pipewire", "pipewire-pulse"
+            "networkmanager", "sudo", "efibootmgr", "pipewire", "pipewire-pulse",
+            "plasma-meta", "sddm", "konsole", "wayland",
+            "python-pyqt6", "python-gobject", "dbus-python", "polkit-kde-agent",
+            "cavrix-welcome", "cavrix-ai", "cavrixos-branding", "cavrixos-desktop-config"
         ]
 
     def install(self) -> bool:
@@ -92,6 +95,7 @@ class CavrixInstaller:
             
         # Enable essential services
         self._run_cmd(["arch-chroot", self.mount_point, "systemctl", "enable", "NetworkManager"])
+        self._run_cmd(["arch-chroot", self.mount_point, "systemctl", "enable", "sddm"])
 
         # 5. Bootloader & UKI
         uki = UKIManager(self.mount_point)

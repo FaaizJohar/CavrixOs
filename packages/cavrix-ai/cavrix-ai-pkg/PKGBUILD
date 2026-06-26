@@ -12,8 +12,8 @@ sha256sums=()
 package() {
   # Install the python app to /opt/cavrix-ai
   install -d "${pkgdir}/opt/cavrix-ai"
-  cp -r "${startdir}/../../cavrix-ai/"* "${pkgdir}/opt/cavrix-ai/"
+  cp -r "${startdir}/../../../../ai/daemon/"* "${pkgdir}/opt/cavrix-ai/"
   
   # Ensure the daemon script is executable
-  chmod +x "${pkgdir}/opt/cavrix-ai/daemon.py"
+  chmod +x "${pkgdir}/opt/cavrix-ai/main.py"
 }

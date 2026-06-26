@@ -56,8 +56,9 @@ $(REPOS): check-deps
 		if [ -d "$$pkg_dir" ]; then \
 			pkg_name=$$(basename "$$pkg_dir"); \
 			echo "$(YELLOW)  ▸ Building $$pkg_name...$(RESET)"; \
+			set -e; \
 			cd "$$pkg_dir" && makepkg -sfi --noconfirm --nocheck; \
-			cp -f *.pkg.tar.* "$(REPO_BASE)/$@/" 2>/dev/null || true; \
+			cp -f *.pkg.tar.* "$(REPO_BASE)/$@/"; \
 			cd "$(CURDIR)"; \
 		fi \
 	done

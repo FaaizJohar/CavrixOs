@@ -12,16 +12,16 @@ sha256sums=()
 package() {
   # Install the python app to /opt/cavrix-welcome
   install -d "${pkgdir}/opt/cavrix-welcome"
-  cp -r "${startdir}/../../cavrix-welcome/"* "${pkgdir}/opt/cavrix-welcome/"
+  cp -r "${startdir}/../../../../apps/cavrix-welcome/"* "${pkgdir}/opt/cavrix-welcome/"
   
   # Ensure the main script is executable
-  chmod +x "${pkgdir}/opt/cavrix-welcome/main.py"
+  chmod +x "${pkgdir}/opt/cavrix-welcome/src/main.py"
   
   # Install Desktop Entry for standard menus
   install -d "${pkgdir}/usr/share/applications"
-  install -m644 "${startdir}/../../cavrix-welcome/cavrix-welcome.desktop" "${pkgdir}/usr/share/applications/"
+  install -m644 "${startdir}/../../../../apps/cavrix-welcome/cavrix-welcome.desktop" "${pkgdir}/usr/share/applications/"
   
   # Autostart on login
   install -d "${pkgdir}/etc/xdg/autostart"
-  install -m644 "${startdir}/../../cavrix-welcome/cavrix-welcome.desktop" "${pkgdir}/etc/xdg/autostart/"
+  install -m644 "${startdir}/../../../../apps/cavrix-welcome/cavrix-welcome.desktop" "${pkgdir}/etc/xdg/autostart/"
 }
