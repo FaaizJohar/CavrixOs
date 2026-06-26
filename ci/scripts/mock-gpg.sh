@@ -8,9 +8,9 @@ echo "Generating Ephemeral CI/CD GPG Key..."
 
 cat > /tmp/gpg-gen.conf <<EOF
 %echo Generating a basic OpenPGP key
-Key-Type: default
+Key-Type: RSA
 Key-Length: 2048
-Subkey-Type: default
+Subkey-Type: RSA
 Subkey-Length: 2048
 Name-Real: CavrixOS CI Pipeline
 Name-Comment: Ephemeral Signing Key
