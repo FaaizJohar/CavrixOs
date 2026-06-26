@@ -1,6 +1,7 @@
 import pytest
 import sys
 import os
+import subprocess
 from unittest.mock import patch, MagicMock
 
 # Add installer source to path for testing
