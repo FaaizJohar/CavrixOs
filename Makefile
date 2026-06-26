@@ -56,8 +56,11 @@ $(REPOS): check-deps
 		if [ -d "$$pkg_dir" ]; then \
 			pkg_name=$$(basename "$$pkg_dir"); \
 			echo "$(YELLOW)  ▸ Building $$pkg_name...$(RESET)"; \
-			set -e; \
-			cd "$$pkg_dir" && makepkg -sfi --noconfirm --nocheck; \
+			cd "$$pkg_dir" && if ! makepkg -sfi --noconfirm --nocheck > makepkg.log 2>&1; then \
+				echo "$(RED)✗ makepkg failed for $$pkg_name! Log output:$(RESET)"; \
+				cat makepkg.log; \
+				exit 1; \
+			fi; \
 			cp -f *.pkg.tar.* "$(REPO_BASE)/$@/"; \
 			cd "$(CURDIR)"; \
 		fi \
