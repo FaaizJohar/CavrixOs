@@ -16,6 +16,7 @@ BOLD = '\033[1m'
 OLLAMA_API = "http://localhost:11434/api/generate"
 DEFAULT_MODEL = "llama3"
 
+
 def get_system_context():
     """Gathers basic system context to inject into the prompt."""
     try:
@@ -26,6 +27,7 @@ def get_system_context():
     except Exception:
         return "System Context: Unknown"
 
+
 def main():
     if len(sys.argv) < 2:
         print(f"{CYAN}{BOLD}Cavrix AI Assistant{RESET}")
@@ -34,11 +36,11 @@ def main():
 
     user_prompt = " ".join(sys.argv[1:])
     sys_context = get_system_context()
-    
+
     # Construct the meta-prompt
     full_prompt = (
-        f"You are Cavrix AI, a helpful terminal assistant running on a CavrixOS system.\n"
-        f"The user is asking a question from the command line. Use the following system context to help them if relevant.\n"
+        f"You are Cavrix AI, a helpful terminal assistant.\n"
+        f"The user is asking a question from the command line.\n"
         f"{sys_context}\n\n"
         f"User question: {user_prompt}"
     )
@@ -50,15 +52,15 @@ def main():
         "prompt": full_prompt,
         "stream": True
     }
-    
+
     req = urllib.request.Request(
-        OLLAMA_API, 
+        OLLAMA_API,
         data=json.dumps(payload).encode('utf-8'),
         headers={'Content-Type': 'application/json'}
     )
-    
+
     print(f"{GREEN}{BOLD}Cavrix AI:{RESET}")
-    
+
     try:
         with urllib.request.urlopen(req) as response:
             for line in response:
@@ -66,16 +68,16 @@ def main():
                     data = json.loads(line.decode('utf-8'))
                     if "response" in data:
                         print(data["response"], end="", flush=True)
-            print() # Print final newline
+            print()  # Print final newline
     except urllib.error.URLError as e:
         print(f"\n{RED}Error: Could not connect to local AI engine.{RESET}")
         print(f"Reason: {e.reason}")
-        print("Make sure the 'ollama' service is running (systemctl start ollama)")
-        print("and the model is downloaded (ollama run llama3).")
+        print("Make sure the 'ollama' service is running")
         sys.exit(1)
     except Exception as e:
         print(f"\n{RED}An unexpected error occurred: {e}{RESET}")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()

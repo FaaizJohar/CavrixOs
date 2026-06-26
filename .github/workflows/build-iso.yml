@@ -19,12 +19,14 @@ jobs:
     - name: Build Packages, Repo, and ISO in Arch Container
       run: |
         docker run --privileged -v ${{ github.workspace }}:/workspace -w /workspace archlinux:base-devel bash -c "pacman-key --init && pacman --noconfirm -Sy archlinux-keyring && pacman --noconfirm -S archiso git make sudo && useradd -m builduser && echo 'builduser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && chown -R builduser:builduser /workspace && su builduser -c 'make packages repo' && make iso" > build.log 2>&1 || (
-          git config --global user.email "bot@cavrixos.org"
-          git config --global user.name "Bot"
-          git checkout -b build-logs
-          git add build.log
-          git commit -m "build failed"
-          git push -f origin build-logs
+          cp build.log CI_ERROR.log
+          git config user.email "bot@cavrixos.org"
+          git config user.name "Bot"
+          git checkout main
+          git pull origin main
+          git add CI_ERROR.log
+          git commit -m "chore: upload CI_ERROR.log"
+          git push origin main
           exit 1
         )
 
