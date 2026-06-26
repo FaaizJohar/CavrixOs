@@ -52,14 +52,17 @@ jobs:
 
       - name: Commit Build Logs
         if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
-          git checkout -b debug-logs-$GITHUB_RUN_ID
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/FaaizJohar/CavrixOS.git
+          git checkout -b debug-logs-$GITHUB_RUN_ID || true
           cp build.log build_debug.log || true
           git add build_debug.log || true
           git commit -m "chore(debug): upload raw build logs [skip ci]" || true
-          git push origin debug-logs-$GITHUB_RUN_ID || true
+          git push -u origin debug-logs-$GITHUB_RUN_ID || true
 
       - name: Publish Release
         uses: softprops/action-gh-release@v2
