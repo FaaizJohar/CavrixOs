@@ -16,7 +16,6 @@ file_permissions=(
   ["/etc/shadow"]="0:0:400"
   ["/etc/gshadow"]="0:0:400"
   ["/root"]="0:0:750"
-  ["/root/cavrixos-install.py"]="0:0:755"
   ["/root/cavrixos_post_install.sh"]="0:0:755"
   ["/usr/local/bin/cavrixos-installer"]="0:0:755"
 )
