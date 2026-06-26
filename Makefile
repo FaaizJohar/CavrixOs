@@ -78,6 +78,9 @@ repo: packages ## Generate pacman repository databases
 iso: check-deps ## Build the bootable ISO
 	@echo "$(BOLD)$(CYAN)▸ Building CavrixOS ISO (v$(ISO_VERSION))$(RESET)"
 	@[ "$$(id -u)" -eq 0 ] || { echo "$(RED)✗ Must run as root$(RESET)"; exit 1; }
+	@echo "$(GREEN)  ▸ Building CavrixOS ISO...$(RESET)"
+	@mkdir -p "$(PROFILE_DIR)/airootfs/opt/cavrixos-installer"
+	@cp -r installer/* "$(PROFILE_DIR)/airootfs/opt/cavrixos-installer/"
 	@mkdir -p "$(OUT_DIR)" "$(WORK_DIR)"
 	mkarchiso -v -w "$(WORK_DIR)" -o "$(OUT_DIR)" "$(PROFILE_DIR)"
 	@cd "$(OUT_DIR)" && sha256sum *.iso > SHA256SUMS

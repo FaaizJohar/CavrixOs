@@ -57,10 +57,10 @@ sleep 1
 tput cnorm # Show cursor
 
 # Ensure the custom profile is in Python's path
-if [ -f "/root/cavrixos-install.py" ]; then
-    python /root/cavrixos-install.py
+if [ -f "/opt/cavrixos-installer/src/core/main.py" ]; then
+    python /opt/cavrixos-installer/src/core/main.py
 else
-    echo -e "\n\033[1;31mError: cavrixos-install.py not found in /root/\033[0m"
-    echo "Falling back to standard archinstall..."
-    archinstall
+    echo -e "\n\033[1;31mError: main.py not found in /opt/cavrixos-installer/\033[0m"
+    echo "Installer payload was not copied into the ISO correctly."
+    exit 1
 fi
