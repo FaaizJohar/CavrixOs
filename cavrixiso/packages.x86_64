@@ -95,3 +95,10 @@ cavrix-ai
 
 # AI Engine
 ollama
+
+# Windows App Support
+wine
+wine-gecko
+wine-mono
+winetricks
+bottles

@@ -29,21 +29,22 @@ class HomeWidget(QWidget):
         # Welcome Text with Apple-like Typography
         title = QLabel("Welcome to Cavrix AI")
         title.setStyleSheet("""
-            color: #ffffff;
-            font-size: 38px;
+            color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #ffffff, stop:1 #a0a0a0);
+            font-size: 42px;
             font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            letter-spacing: -1px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
         """)
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(title)
 
-        subtitle = QLabel("The World's First AI-Powered Operating System.")
+        subtitle = QLabel("The World's Most Advanced AI-Powered Operating System.")
         subtitle.setStyleSheet("""
-            color: rgba(255, 255, 255, 140);
-            font-size: 16px;
+            color: rgba(255, 255, 255, 160);
+            font-size: 18px;
             font-family: 'Inter', sans-serif;
             font-weight: 400;
+            letter-spacing: 0.5px;
         """)
         subtitle.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(subtitle)
@@ -55,17 +56,18 @@ class HomeWidget(QWidget):
         btn.setCursor(Qt.CursorShape.PointingHandCursor)
         btn.setStyleSheet("""
             QPushButton {
-                background-color: rgba(37, 99, 235, 255); /* Cavrix Blue */
+                background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(37, 99, 235, 255), stop:1 rgba(79, 70, 229, 255));
                 color: #ffffff;
-                border: none;
-                border-radius: 12px;
-                padding: 12px 32px;
+                border: 1px solid rgba(255, 255, 255, 40);
+                border-radius: 14px;
+                padding: 14px 36px;
                 font-family: 'Inter', sans-serif;
-                font-size: 15px;
+                font-size: 16px;
                 font-weight: 600;
             }
             QPushButton:hover {
-                background-color: rgba(59, 130, 246, 255);
+                background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(59, 130, 246, 255), stop:1 rgba(99, 102, 241, 255));
+                border: 1px solid rgba(255, 255, 255, 80);
             }
             QPushButton:pressed {
                 background-color: rgba(29, 78, 216, 255);

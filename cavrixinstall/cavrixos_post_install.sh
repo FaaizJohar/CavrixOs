@@ -39,6 +39,7 @@ EOF
 echo "==> Setting up Flatpak Remotes"
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-
+echo "==> Enabling Multilib for Windows App Support (Wine)"
+sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 
 echo "==> Setup complete!"

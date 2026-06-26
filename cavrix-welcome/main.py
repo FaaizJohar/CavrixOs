@@ -15,28 +15,32 @@ class GlassSidebar(QListWidget):
         # Mac-like translucent sidebar styling
         self.setStyleSheet("""
             QListWidget {
-                background-color: rgba(30, 30, 35, 180);
+                background-color: rgba(20, 20, 25, 190);
                 border: none;
-                border-right: 1px solid rgba(255, 255, 255, 20);
-                padding: 15px 10px;
+                border-right: 1px solid rgba(255, 255, 255, 15);
+                padding: 20px 12px;
                 outline: 0;
             }
             QListWidget::item {
-                color: rgba(255, 255, 255, 200);
-                padding: 12px;
-                border-radius: 8px;
-                margin-bottom: 6px;
+                color: rgba(255, 255, 255, 170);
+                padding: 14px 16px;
+                border-radius: 10px;
+                margin-bottom: 8px;
                 font-family: 'Inter', sans-serif;
                 font-size: 14px;
                 font-weight: 500;
+                border: 1px solid transparent;
             }
             QListWidget::item:selected {
-                background-color: rgba(37, 99, 235, 200); /* Cavrix Blue */
+                background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(37, 99, 235, 200), stop:1 rgba(79, 70, 229, 200));
                 color: #ffffff;
+                border: 1px solid rgba(255, 255, 255, 30);
+                font-weight: 600;
             }
             QListWidget::item:hover:!selected {
-                background-color: rgba(255, 255, 255, 15);
+                background-color: rgba(255, 255, 255, 10);
                 color: #ffffff;
+                border: 1px solid rgba(255, 255, 255, 10);
             }
         """)
 

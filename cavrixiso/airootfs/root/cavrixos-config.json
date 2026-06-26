@@ -26,7 +26,13 @@
   },
   "ntp": true,
   "offline": false,
-  "packages": [],
+  "packages": [
+    "wine",
+    "wine-gecko",
+    "wine-mono",
+    "winetricks",
+    "bottles"
+  ],
   "pacman_config": {
     "color": true,
     "parallel_downloads": 5
