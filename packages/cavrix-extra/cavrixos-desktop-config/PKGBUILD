@@ -23,7 +23,7 @@ EOF
 
   # Install Kvantum Theme
   install -d "${pkgdir}/usr/share/Kvantum/CavrixOS"
-  install -m644 "${startdir}/../../../../desktop/assets/kvantum/CavrixOS/"* "${pkgdir}/usr/share/Kvantum/CavrixOS/"
+  install -m644 "${startdir}/../../../desktop/assets/kvantum/CavrixOS/"* "${pkgdir}/usr/share/Kvantum/CavrixOS/"
   
   # Set default SDDM theme
   install -d "${pkgdir}/etc/sddm.conf.d"

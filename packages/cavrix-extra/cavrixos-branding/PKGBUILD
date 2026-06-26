@@ -12,27 +12,27 @@ sha256sums=()
 package() {
   # Install Wallpapers
   install -d "${pkgdir}/usr/share/backgrounds/cavrixos"
-  install -m644 "${startdir}/../../../../desktop/assets/wallpapers/"* "${pkgdir}/usr/share/backgrounds/cavrixos/"
+  install -m644 "${startdir}/../../../desktop/assets/wallpapers/"* "${pkgdir}/usr/share/backgrounds/cavrixos/"
   
   # KDE Look and Feel (Mac Layout)
   install -d "${pkgdir}/usr/share/plasma/look-and-feel/cavrixos-global"
-  cp -r "${startdir}/../../../../desktop/assets/kde/cavrixos-global/"* "${pkgdir}/usr/share/plasma/look-and-feel/cavrixos-global/"
+  cp -r "${startdir}/../../../desktop/assets/kde/cavrixos-global/"* "${pkgdir}/usr/share/plasma/look-and-feel/cavrixos-global/"
 
   # KDE Color Scheme
   install -d "${pkgdir}/usr/share/color-schemes"
-  install -m644 "${startdir}/../../../../desktop/assets/kde/CavrixDark.colors" "${pkgdir}/usr/share/color-schemes/"
+  install -m644 "${startdir}/../../../desktop/assets/kde/CavrixDark.colors" "${pkgdir}/usr/share/color-schemes/"
   
   # Install Logos
   install -d "${pkgdir}/usr/share/pixmaps"
-  install -m644 "${startdir}/../../../../desktop/assets/"*.svg "${pkgdir}/usr/share/pixmaps/"
+  install -m644 "${startdir}/../../../desktop/assets/"*.svg "${pkgdir}/usr/share/pixmaps/"
   
   # Install Plymouth Theme
   install -d "${pkgdir}/usr/share/plymouth/themes/cavrixos-boot"
-  cp -r "${startdir}/../../../../desktop/assets/plymouth/cavrixos-boot/"* "${pkgdir}/usr/share/plymouth/themes/cavrixos-boot/"
+  cp -r "${startdir}/../../../desktop/assets/plymouth/cavrixos-boot/"* "${pkgdir}/usr/share/plymouth/themes/cavrixos-boot/"
   
   # Install SDDM Theme
   install -d "${pkgdir}/usr/share/sddm/themes/cavrixos-glass"
-  cp -r "${startdir}/../../../../desktop/assets/sddm/cavrixos-glass/"* "${pkgdir}/usr/share/sddm/themes/cavrixos-glass/"
+  cp -r "${startdir}/../../../desktop/assets/sddm/cavrixos-glass/"* "${pkgdir}/usr/share/sddm/themes/cavrixos-glass/"
 
   # Install AI Terminal Assistant
   install -d "${pkgdir}/usr/bin"
