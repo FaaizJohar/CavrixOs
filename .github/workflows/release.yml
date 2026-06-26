@@ -2,8 +2,8 @@ name: CavrixOS Master Release Pipeline
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -35,7 +35,7 @@ jobs:
               pacman --noconfirm -Sy archlinux-keyring reflector && \
               reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist && \
               pacman --noconfirm -S archiso git make sudo grub syslinux mtools dosfstools edk2-ovmf jq python-pytest && \
-              sed -i 's/^#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/' /etc/makepkg.conf && \
+              sed -i 's/^#MAKEFLAGS=\"-j2\"/MAKEFLAGS=\"-j$(nproc)\"/' /etc/makepkg.conf && \
               sed -i 's/COMPRESSZST=(zstd -c -z -q -)/COMPRESSZST=(zstd -c -z -q -T0 -)/' /etc/makepkg.conf && \
               useradd -m builduser && \
               echo 'builduser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
@@ -44,7 +44,8 @@ jobs:
               /workspace/ci/scripts/mock-gpg.sh && \
               cd /workspace && \
               pytest testing/tests/ && \
-              su builduser -c 'make all' && \
+              su builduser -c 'make packages' && \
+              make repo && \
               make iso
             " > build.log 2>&1
 
