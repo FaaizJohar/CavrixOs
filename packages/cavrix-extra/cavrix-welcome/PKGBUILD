@@ -15,7 +15,7 @@ package() {
   cp -r "${startdir}/../../../../apps/cavrix-welcome/"* "${pkgdir}/opt/cavrix-welcome/"
   
   # Ensure the main script is executable
-  chmod +x "${pkgdir}/opt/cavrix-welcome/src/main.py"
+  chmod +x "${pkgdir}/opt/cavrix-welcome/main.py"
   
   # Install Desktop Entry for standard menus
   install -d "${pkgdir}/usr/share/applications"

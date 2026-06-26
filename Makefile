@@ -14,7 +14,7 @@ WORK_DIR       := /tmp/cavrixos-build
 
 # Repositories
 REPO_BASE      := $(CURDIR)/repositories
-REPOS          := cavrix-core cavrix-extra cavrix-ai
+REPOS          := cavrix-core cavrix-ai cavrix-extra
 PKG_BASE       := $(CURDIR)/packages
 
 # ISO Config
